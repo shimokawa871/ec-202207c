@@ -1,12 +1,36 @@
 {
   "items": [
     {
-      "name": "商品1",
-      "id": 1
+      "name": "じゃがバターベーコン",
+      "id": 1,
+      "description": "じゃがいもとベーコンのピザ",
+      "priceM": "1380",
+      "priceL": "2380",
+      "imagePath": "/1.jpg"
     },
     {
-      "name": "商品2",
-      "id": 2
+      "name": "きのことベーコン",
+      "id": 2,
+      "description": "きのことベーコンのピザ",
+      "priceM": "1100",
+      "priceL": "2100",
+      "imagePath": "/2.jpg"
+    },
+    {
+      "name": "マルゲリータ",
+      "description": "トマトソースのピザ",
+      "priceM": "1150",
+      "priceL": "2150",
+      "imagePath": "/3.jpg",
+      "id": 3
+    },
+    {
+      "name": "シーフード",
+      "description": "海老やイカがのったピザ",
+      "priceM": "1560",
+      "priceL": "2560",
+      "imagePath": "/4.jpg",
+      "id": 4
     }
   ]
 }
