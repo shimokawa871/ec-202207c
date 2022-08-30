@@ -9,9 +9,19 @@ const nextConfig = {
         destination: 'http://localhost:8000/',
       },
       {
+
         source:"/api/users",
         destination: "http://localhost:8000/users"
       }
+
+        source: "/api/items/:id",
+        destination: "http://localhost:8000/items/:id"
+      },
+      {
+        source: '/api/options',
+        destination: 'http://localhost:8000/options',
+      },
+
     ];
   },
 }

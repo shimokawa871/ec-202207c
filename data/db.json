@@ -1,4 +1,5 @@
 {
+  "users": [],
   "items": [
     {
       "name": "じゃがバターベーコン",
@@ -31,6 +32,7 @@
       "priceL": "2560",
       "imagePath": "/4.jpg",
       "id": 4
+
     }
   ],
 
@@ -46,4 +48,59 @@
       "id": "1"
     }
   ]
+
+    },
+    {
+      "name": "シーフード",
+      "description": "海老やイカがのったピザ",
+      "priceM": "1560",
+      "priceL": "2560",
+      "imagePath": "/4.jpg",
+      "id": 4
+    },
+    {
+      "name": "コーンマヨ",
+      "description": "コーンがのったピザ",
+      "priceM": "1150",
+      "priceL": "2150",
+      "imagePath": "/5.jpg",
+      "id": 5
+    }
+  ],
+  "options": [
+      {
+        "id": 1,
+        "name": "オニオン",
+        "priceM": 200,
+        "priceL": 300
+      },
+      {
+        "id": 2,
+        "name": "チーズ",
+        "priceM": 200,
+        "priceL": 300
+      },
+      {
+        "id": 3,
+        "name": "ピーマン",
+        "priceM": 200,
+        "priceL": 300
+      },
+      {
+        "id": 4,
+        "name": "ロースハム",
+        "priceM": 200,
+        "priceL": 300
+      },
+      {
+        "id": 5,
+        "name": "ほうれん草",
+        "priceM": 200,
+        "priceL": 300
+      }
+  ],
+  "orders": [],
+  "orderItems": [],
+  "orderOptions": []
+
 }
