@@ -34,6 +34,9 @@ export default function Login() {
   const [email, setEmail] =useState("");
   const onChangeEmail = (event:any) => setEmail(event.target.value);
 
+  const [pass, setPass] = useState("");
+  const onChangePass = (event:any) => setPass(event.target.value);
+
   return (
     <>
       <Head>
@@ -55,7 +58,8 @@ export default function Login() {
           type="password"
           id="pass"
           name="pass"
-          value={''}
+          value={pass}
+          onChange={onChangePass}
         />
         <input type="submit" value="ログイン"  ></input>
       </form>
