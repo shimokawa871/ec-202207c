@@ -1,7 +1,11 @@
 import Head from 'next/head';
 import Image from 'next/image';
+import Link from 'next/link';
+import { useState } from 'react';
+// import { Option } from '../../components/detail'
+import useSWR from 'swr';
 
-export default function Detail({item}: any) {
+export default function Detail({ item }: any) {
   console.log(item);
 
   const id = item.id;
@@ -9,6 +13,57 @@ export default function Detail({item}: any) {
   const priceM = item.priceM;
   const priceL = item.priceL;
   const description = item.description;
+  const imagePath = item.imagePath;
+
+  // APIサーバから持ってくるので消す
+  const optionList: any = [
+    'オニオン',
+    'チーズ',
+    'ピーマン',
+    'ロースハム',
+    'ほうれん草',
+    'ぺパロに',
+    'グリルナス',
+    'あらびきソーセージ',
+  ];
+
+  const [price, setPrice] = useState(0);
+  const [total, setTotal] = useState(0);
+  const [number, setNumber] = useState(1);
+
+  function calc(price: any) {
+    setPrice(price);
+    setNumber(number);
+
+    console.log(price);
+    console.log(number);
+    setTotal(price * number);
+  }
+
+  // オプションのデータ取得
+  const fetcher = (resource: string, init: undefined) =>
+    fetch(resource, init).then((res) => res.json());
+
+  function OptionData() {
+    const { data, error } = useSWR('/api/options', fetcher);
+
+    if (error) return <div>failed to load</div>;
+    if (!data) return <div>loading...</div>;
+
+    console.log(data);
+
+    return (
+      <td>
+        {data.map((d: any) => {
+          return (
+            <tr key={d.id}>
+              <td>{d.name}</td>
+            </tr>
+          );
+        })}
+      </td>
+    );
+  }
 
   return (
     <>
@@ -16,22 +71,13 @@ export default function Detail({item}: any) {
         <title>らくらくピザ屋 - 商品詳細</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <header>
-        <p>
-          <a href="#">ショッピングカート</a>&nbsp;&nbsp;
-          <a href="#">注文履歴</a>&nbsp;&nbsp;
-          <a href="#">ログイン</a>&nbsp;&nbsp;
-          <a href="#">ログアウト</a>
-        </p>
-      </header>
+      <header>{/* Headerコンポーネント */}</header>
       <div>
         <h3>商品詳細</h3>
-        {/* <Image src="https://1.bp.blogspot.com/-CAroinPVLPw/X9GYFpVZ4DI/AAAAAAABcs8/EVBG1MUGq9wj56i-HKNzi5JHpDaERVlxwCNcBGAsYHQ/s509/food_pizza_whole.png" width={64} height={64} alt="item-image" /> */}
+
+        <Image src={imagePath} width={100} height={100} alt="logo" />
       </div>
       <h4>商品名:{name}</h4>
-      <p>
-        <span>価格:{priceM}</span>
-      </p>
       <p>
         <span>説明:{description}</span>
       </p>
@@ -42,12 +88,18 @@ export default function Detail({item}: any) {
           <input
             type="radio"
             name="size-choice"
-            // checked="checked"
+            value={priceM}
+            onChange={(e: any) => calc(e.target.value)}
           />
           <span>&nbsp;М&nbsp;</span>&nbsp;&nbsp;{priceM}円(税抜)
         </label>
         <label>
-          <input type="radio" name="size-choice" />
+          <input
+            type="radio"
+            name="size-choice"
+            value={priceL}
+            onChange={(e: any) => calc(e.target.value)}
+          />
           <span>&nbsp;Ｌ</span>&nbsp;&nbsp;{priceL}円(税抜)
         </label>
       </div>
@@ -60,46 +112,23 @@ export default function Detail({item}: any) {
         </label>
 
         <div>
-          <label className="checkbox-inline">
-            <input type="checkbox" value="" />
-            オニオン
-          </label>
-          <label className="checkbox-inline">
-            <input type="checkbox" value="" />
-            チーズ
-          </label>
-          <label className="checkbox-inline">
-            <input type="checkbox" value="" />
-            ピーマン
-          </label>
-          <label className="checkbox-inline">
-            <input type="checkbox" value="" />
-            ロースハム{' '}
-          </label>
-          <br />
-          <label className="checkbox-inline">
-            <input type="checkbox" value="" />
-            ほうれん草
-          </label>
-          <label className="checkbox-inline">
-            <input type="checkbox" value="" />
-            ぺパロに
-          </label>
-          <label className="checkbox-inline">
-            <input type="checkbox" value="" />
-            グリルナス
-          </label>
-          <label className="checkbox-inline">
-            <input type="checkbox" value="" />
-            あらびきソーセージ
-          </label>
+          {optionList.map((option): any => {
+            return (
+              <label className="checkbox-inline">
+                <input type="checkbox" value="" key={option} />
+                {option}
+              </label>
+            );
+          })}
         </div>
       </div>
-
       <div>
         <label>
           数量:数量を選択してください
-          <select name="area">
+          <select
+            name="area"
+            onChange={(e: any) => setNumber(e.target.value)}
+          >
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -118,38 +147,66 @@ export default function Detail({item}: any) {
 
       <div>
         <span>
-          この商品金額：<span>****</span>円(税抜)
+          この商品金額：<span>{total}</span>円(税抜)
         </span>
       </div>
-      <input type="submit" value="カートに入れる" />
+      {/* リンク先変える */}
+      <Link href="/items">
+        <a>
+          <input type="submit" value="カートに入れる" />
+        </a>
+      </Link>
+
+      <OptionData />
     </>
   );
 }
 
-// 1
-// APIサーバからidのリストを取ってくる
 export async function getStaticPaths() {
-  const url = `http://localhost:8000/items`
+  const url = `http://localhost:8000/items`;
 
   const res = await fetch(url);
-  const items = await res.json()
+  const items = await res.json();
 
   return {
-    paths: items.map((item :any) => `/items/${item.id}`),
+    paths: items.map((item: any) => `/items/${item.id}`),
     fallback: false,
   };
 }
 
-// 2
-// 該当ページの情報を取ってくるURLを作成
-export async function getStaticProps({ params }: { params: {id:string} }) {
+export async function getStaticProps({
+  params,
+}: {
+  params: { id: string };
+}) {
+  const url = `http://localhost:8000/items/${params.id}`;
 
-const url = `http://localhost:8000/items/${params.id}`
+  const res = await fetch(url);
+  const item = await res.json();
 
-const res = await fetch(url);
-const item = await res.json()
-
-return {
-props: {item},
-};
+  return {
+    props: { item },
+  };
 }
+
+// function Option() {
+//   const fetcher = (resource: string, init: undefined) =>
+//   fetch(resource, init).then((res) => res.json());
+
+//   function OptionData() {
+//     const { data, error } = useSWR('/api/options', fetcher);
+
+//     if (error) return <div>failed to load</div>;
+//     if (!data) return <div>loading...</div>;
+
+//     console.log(data);
+
+//     return(
+//       <h1>{data[0].name}</h1>
+//     )
+// }
+
+// return (
+//   <OptionData />
+// )
+// }

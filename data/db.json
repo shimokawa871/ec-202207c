@@ -1,4 +1,5 @@
 {
+  "users": [],
   "items": [
     {
       "name": "じゃがバターベーコン",
@@ -32,5 +33,42 @@
       "imagePath": "/4.jpg",
       "id": 4
     }
-  ]
+  ],
+  "options": [
+    [
+      {
+        "id": 1,
+        "name": "オニオン",
+        "priceM": 200,
+        "priceL": 300
+      },
+      {
+        "id": 1,
+        "name": "チーズ",
+        "priceM": 200,
+        "priceL": 300
+      },
+      {
+        "id": 1,
+        "name": "ピーマン",
+        "priceM": 200,
+        "priceL": 300
+      },
+      {
+        "id": 1,
+        "name": "ロースハム",
+        "priceM": 200,
+        "priceL": 300
+      },
+      {
+        "id": 1,
+        "name": "ほうれん草",
+        "priceM": 200,
+        "priceL": 300
+      }
+    ]
+  ],
+  "orders": [],
+  "orderItems": [],
+  "orderOptions": []
 }
