@@ -35,7 +35,6 @@
     }
   ],
   "options": [
-    [
       {
         "id": 1,
         "name": "オニオン",
@@ -43,30 +42,29 @@
         "priceL": 300
       },
       {
-        "id": 1,
+        "id": 2,
         "name": "チーズ",
         "priceM": 200,
         "priceL": 300
       },
       {
-        "id": 1,
+        "id": 3,
         "name": "ピーマン",
         "priceM": 200,
         "priceL": 300
       },
       {
-        "id": 1,
+        "id": 4,
         "name": "ロースハム",
         "priceM": 200,
         "priceL": 300
       },
       {
-        "id": 1,
+        "id": 5,
         "name": "ほうれん草",
         "priceM": 200,
         "priceL": 300
       }
-    ]
   ],
   "orders": [],
   "orderItems": [],
