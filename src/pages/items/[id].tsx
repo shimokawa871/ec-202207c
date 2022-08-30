@@ -2,7 +2,6 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
-// import { Option } from '../../components/detail'
 import useSWR from 'swr';
 
 export default function Detail({ item }: any) {
@@ -15,54 +14,19 @@ export default function Detail({ item }: any) {
   const description = item.description;
   const imagePath = item.imagePath;
 
-  // APIサーバから持ってくるので消す
-  const optionList: any = [
-    'オニオン',
-    'チーズ',
-    'ピーマン',
-    'ロースハム',
-    'ほうれん草',
-    'ぺパロに',
-    'グリルナス',
-    'あらびきソーセージ',
-  ];
-
   const [price, setPrice] = useState(0);
   const [total, setTotal] = useState(0);
   const [number, setNumber] = useState(1);
+  const [size, setSize] = useState("");
 
   function calc(price: any) {
     setPrice(price);
     setNumber(number);
+    setSize(price);
 
-    console.log(price);
-    console.log(number);
+    // console.log(price);
+    // console.log(number);
     setTotal(price * number);
-  }
-
-  // オプションのデータ取得
-  const fetcher = (resource: string, init: undefined) =>
-    fetch(resource, init).then((res) => res.json());
-
-  function OptionData() {
-    const { data, error } = useSWR('/api/options', fetcher);
-
-    if (error) return <div>failed to load</div>;
-    if (!data) return <div>loading...</div>;
-
-    console.log(data);
-
-    return (
-      <td>
-        {data.map((d: any) => {
-          return (
-            <tr key={d.id}>
-              <td>{d.name}</td>
-            </tr>
-          );
-        })}
-      </td>
-    );
   }
 
   return (
@@ -110,17 +74,7 @@ export default function Detail({ item }: any) {
           <span>&nbsp;М&nbsp;</span>&nbsp;&nbsp;200円(税抜)
           <span>&nbsp;Ｌ</span>&nbsp;&nbsp;300円(税抜)
         </label>
-
-        <div>
-          {optionList.map((option): any => {
-            return (
-              <label className="checkbox-inline">
-                <input type="checkbox" value="" key={option} />
-                {option}
-              </label>
-            );
-          })}
-        </div>
+        <OptionData size ={size} />
       </div>
       <div>
         <label>
@@ -151,13 +105,11 @@ export default function Detail({ item }: any) {
         </span>
       </div>
       {/* リンク先変える */}
-      <Link href="/items">
+      <Link href="/">
         <a>
           <input type="submit" value="カートに入れる" />
         </a>
       </Link>
-
-      <OptionData />
     </>
   );
 }
@@ -189,24 +141,38 @@ export async function getStaticProps({
   };
 }
 
-// function Option() {
-//   const fetcher = (resource: string, init: undefined) =>
-//   fetch(resource, init).then((res) => res.json());
+// option のデータ表示
+const fetcher = (resource: any, init: any) =>
+  fetch(resource, init).then((res) => res.json());
 
-//   function OptionData() {
-//     const { data, error } = useSWR('/api/options', fetcher);
+function OptionData({size}) {
+  const { data, error } = useSWR('/api/options', fetcher);
 
-//     if (error) return <div>failed to load</div>;
-//     if (!data) return <div>loading...</div>;
+  if (error) return <div>failed to load</div>;
+  if (!data) return <div>loading...</div>;
 
-//     console.log(data);
+  console.log(data);
+  console.log(data.name);
 
-//     return(
-//       <h1>{data[0].name}</h1>
-//     )
-// }
+  function sizeJudge() {
+    console.log(size);
 
-// return (
-//   <OptionData />
-// )
-// }
+    // sizeMとsizeLの値はそれぞれ違うけどとりあえず1のデータで！
+    if(size === 1380){
+      console.log(size);
+    }
+  }
+
+  return (
+    <div>
+      {data.map((d: any) => {
+        return (
+          <label key={d.id}>
+            <input type="checkbox" value={d.name} onChange={() => sizeJudge()} />
+            {d.name}
+          </label>
+        );
+      })}
+    </div>
+  );
+}
