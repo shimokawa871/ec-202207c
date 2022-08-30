@@ -31,6 +31,22 @@
       "priceL": "2560",
       "imagePath": "/4.jpg",
       "id": 4
+    },
+    {
+      "name": "シーフード",
+      "description": "海老やイカがのったピザ",
+      "priceM": "1560",
+      "priceL": "2560",
+      "imagePath": "/4.jpg",
+      "id": 4
+    },
+    {
+      "name": "コーンマヨ",
+      "description": "コーンがのったピザ",
+      "priceM": "1150",
+      "priceL": "2150",
+      "imagePath": "/5.jpg",
+      "id": 5
     }
   ]
 }
