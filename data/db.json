@@ -32,6 +32,23 @@
       "priceL": "2560",
       "imagePath": "/4.jpg",
       "id": 4
+
+    }
+  ],
+
+  "users": [
+    {
+      "name": "喜島郁莉",
+      "mail": "ikuri.kijima@rakus-partners.co.jp",
+      "zipcode": "160-0022",
+      "address": "東京都新宿区新宿4-3-25",
+      "tel": "03-6675-3638",
+      "password": "ikuri.kijima",
+      "Cpassword": "ikuri",
+      "id": "1"
+    }
+  ]
+
     },
     {
       "name": "シーフード",
@@ -85,4 +102,5 @@
   "orders": [],
   "orderItems": [],
   "orderOptions": []
+
 }

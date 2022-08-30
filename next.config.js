@@ -6,9 +6,14 @@ const nextConfig = {
     return [
       {
         source: '/api/items',
-        destination: 'http://localhost:8000/items',
+        destination: 'http://localhost:8000/',
       },
       {
+
+        source:"/api/users",
+        destination: "http://localhost:8000/users"
+      }
+
         source: "/api/items/:id",
         destination: "http://localhost:8000/items/:id"
       },
@@ -16,6 +21,7 @@ const nextConfig = {
         source: '/api/options',
         destination: 'http://localhost:8000/options',
       },
+
     ];
   },
 }
