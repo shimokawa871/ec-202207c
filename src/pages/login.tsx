@@ -27,7 +27,7 @@ export function User(){
             logined: data.logined,
           },
         }});
-  }
+  }))}
 
 
 export default function Login() {
