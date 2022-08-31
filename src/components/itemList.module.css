@@ -1,0 +1,36 @@
+.itemList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 1100px;
+  gap: 2%;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.item {
+  border: solid;
+  border-color: lightgray;
+  margin: 15px;
+}
+
+.sizeM {
+  background-color: #ff6347;
+  padding: 1px;
+  border: solid #ff6347;
+  border-radius: 30%;
+  line-height: 1.9;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+}
+.sizeL {
+  background-color: #ff6347;
+  padding: 1px 2.85px;
+  border: solid #ff6347;
+  border-radius: 30%;
+  line-height: 1.9;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+}
