@@ -7,16 +7,16 @@ import { useState } from 'react';
 // import { useRouter } from 'next/router';
 // import React, { ChangeEventHandler, SyntheticEvent, useState } from 'react';
 
-
-export function User(){
-  return(
-  fetch('http://localhost:8000/users?mail=${email}&password=${pass}',{
-    method:"GET",
-    headers:{"Content-Type":"application/json"},
-    credentials:'include'
-    })
-
-    .then(res => res.json())
+export function User() {
+  return fetch(
+    'http://localhost:8000/users?mail=${email}&password=${pass}',
+    {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({}),
+    }
+  )
+    .then((res) => res.json())
     .then((data) => {
       return data.map((data: any) => {
         return {
@@ -26,20 +26,21 @@ export function User(){
             password: data.password,
             logined: data.logined,
           },
-        }});
-  }))}
+        };
+      });
+    });
+}
 
-
-  // const user = users.fiter(function(name1:any,){
-  //   if(name1.name === "setEmail")return true;
-  // });
+// const user = users.fiter(function(name1:any,){
+//   if(name1.name === "setEmail")return true;
+// });
 
 export default function Login() {
-  const [email, setEmail] =useState("");
-  const onChangeEmail = (event:any) => setEmail(event.target.value);
+  const [email, setEmail] = useState('');
+  const onChangeEmail = (event: any) => setEmail(event.target.value);
 
-  const [pass, setPass] = useState("");
-  const onChangePass = (event:any) => setPass(event.target.value);
+  const [pass, setPass] = useState('');
+  const onChangePass = (event: any) => setPass(event.target.value);
 
   return (
     <>
@@ -65,8 +66,8 @@ export default function Login() {
           value={pass}
           onChange={onChangePass}
         />
-        <input type="submit" value="ログイン"  ></input>
+        <input type="submit" value="ログイン"></input>
       </form>
     </>
   );
-  }
+}
