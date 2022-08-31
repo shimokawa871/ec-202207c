@@ -10,7 +10,7 @@ import { useState } from 'react';
 
 export function User(){
   return(
-  fetch('/api/users',{
+  fetch('http://localhost:8000/users?mail=${email}&password=${pass}',{
     method:"GET",
     headers:{"Content-Type":"application/json"},
     credentials:'include'
@@ -29,6 +29,10 @@ export function User(){
         }});
   }))}
 
+
+  // const user = users.fiter(function(name1:any,){
+  //   if(name1.name === "setEmail")return true;
+  // });
 
 export default function Login() {
   const [email, setEmail] =useState("");
