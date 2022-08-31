@@ -3,9 +3,16 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import useSWR from 'swr';
+import ItemList from '../../components/ItemList';
+import Header from '../../components/Header';
+import HeaderCart from 'components/HeaderCart';
+import HeaderOrder from 'components/HeaderOrder';
+import HeaderLogin from 'components/HeaderLogin';
+import HeaderLogout from 'components/HeaderLogout';
+import Layout from '../../components/layout';
 
 export default function Detail({ item }: any) {
-  console.log(item);
+  // console.log(item);
 
   const id = item.id;
   const name = item.name;
@@ -15,18 +22,16 @@ export default function Detail({ item }: any) {
   const imagePath = item.imagePath;
 
   const [price, setPrice] = useState(0);
-  const [total, setTotal] = useState(0);
-  const [number, setNumber] = useState(1);
-  const [size, setSize] = useState("");
+  const [size, setSize] = useState(true);
 
   function calc(price: any) {
-    setPrice(price);
-    setNumber(number);
-    setSize(price);
+    setPrice(price)
 
-    // console.log(price);
-    // console.log(number);
-    setTotal(price * number);
+    let elements = document.getElementsByName('size-choice');
+    // 0はMサイズ（true）1はLサイズ（false）
+    setSize(elements[0].checked)
+    console.log(size);
+
   }
 
   return (
@@ -35,7 +40,14 @@ export default function Detail({ item }: any) {
         <title>らくらくピザ屋 - 商品詳細</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <header>{/* Headerコンポーネント */}</header>
+
+      <Header
+        menu1={<HeaderCart />}
+        menu2={<HeaderOrder />}
+        menu3={<HeaderLogin />}
+        menu4={<HeaderLogout />}
+      />  
+
       <div>
         <h3>商品詳細</h3>
 
@@ -74,37 +86,9 @@ export default function Detail({ item }: any) {
           <span>&nbsp;М&nbsp;</span>&nbsp;&nbsp;200円(税抜)
           <span>&nbsp;Ｌ</span>&nbsp;&nbsp;300円(税抜)
         </label>
-        <OptionData size ={size} />
+        <OptionData size={size} priceM={priceM} priceL={priceL} price={price}/>
       </div>
-      <div>
-        <label>
-          数量:数量を選択してください
-          <select
-            name="area"
-            onChange={(e: any) => setNumber(e.target.value)}
-          >
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option>
-          </select>
-        </label>
-      </div>
-
-      <div>
-        <span>
-          この商品金額：<span>{total}</span>円(税抜)
-        </span>
-      </div>
-      {/* リンク先変える */}
+      
       <Link href="/">
         <a>
           <input type="submit" value="カートに入れる" />
@@ -145,22 +129,31 @@ export async function getStaticProps({
 const fetcher = (resource: any, init: any) =>
   fetch(resource, init).then((res) => res.json());
 
-function OptionData({size}) {
+function OptionData(props: any):any {
   const { data, error } = useSWR('/api/options', fetcher);
 
   if (error) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;
 
-  console.log(data);
-  console.log(data.name);
+  const size = props.size;
+  const price = props.price;
+
+  const optionPriceM = data[0].priceM;
+  const optionPriceL = data[0].priceL;
+
+  // オプションの料金がどっちか
+  let optionPrice = size ? optionPriceM : optionPriceL;
+  console.log(optionPrice);
 
   function sizeJudge() {
-    console.log(size);
-
-    // sizeMとsizeLの値はそれぞれ違うけどとりあえず1のデータで！
-    if(size === 1380){
-      console.log(size);
-    }
+    // チェックボックスにチェックが入っている数を数える
+    const checkCount = document.querySelectorAll(
+      'input[type="checkbox"]:checked'
+    ).length;
+    console.log(checkCount);
+    const singlePrice = checkCount * optionPrice + Number(price);
+    console.log(singlePrice);
+    return singlePrice
   }
 
   return (
@@ -168,11 +161,54 @@ function OptionData({size}) {
       {data.map((d: any) => {
         return (
           <label key={d.id}>
-            <input type="checkbox" value={d.name} onChange={() => sizeJudge()} />
+            <input
+              type="checkbox"
+              value={d.name}
+              onChange={() => sizeJudge()}
+            />
             {d.name}
           </label>
         );
       })}
+      <Total price ={price} />
     </div>
+  )
+}
+
+// 個数と合計値の計算
+function Total(props: any) {
+
+  console.log(`${props.test} は1つ分の値段です`);
+
+  const [number, setNumber] = useState(1);
+
+  function totalCalc(num :number) {
+    setNumber(num)
+  }
+
+  return (
+    <>
+      <div>
+        <label>
+          数量:数量を選択してください
+          <select
+            name="area"
+            onChange={(e: any) => totalCalc(e.target.value)}
+          >
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </label>
+      </div>
+
+      <div>
+        <span>
+          この商品金額：<span>{number * props.price}</span>円(税抜)
+        </span>
+      </div>
+    </>
   );
 }
