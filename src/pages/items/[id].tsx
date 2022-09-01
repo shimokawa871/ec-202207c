@@ -21,13 +21,15 @@ export default function Detail({ item }: any) {
   const description = item.description;
   const imagePath = item.imagePath;
 
-  const [price, setPrice] = useState(0);
+  const [price, setPrice] = useState(priceM);
   const [size, setSize] = useState(true);
+  const [] = useState();
 
-  function calc(price: any) {
-    setPrice(price)
+  function calc(b: any) {
+    // setPrice(price)
+    setPrice(b)
 
-    let elements = document.getElementsByName('size-choice');
+    let elements = document.getElementsByName('sizeChoice');
     // 0はMサイズ（true）1はLサイズ（false）
     setSize(elements[0].checked)
     console.log(size);
@@ -63,16 +65,17 @@ export default function Detail({ item }: any) {
         <label>
           <input
             type="radio"
-            name="size-choice"
+            name="sizeChoice"
             value={priceM}
             onChange={(e: any) => calc(e.target.value)}
+            checked
           />
           <span>&nbsp;М&nbsp;</span>&nbsp;&nbsp;{priceM}円(税抜)
         </label>
         <label>
           <input
             type="radio"
-            name="size-choice"
+            name="sizeChoice"
             value={priceL}
             onChange={(e: any) => calc(e.target.value)}
           />
@@ -86,7 +89,7 @@ export default function Detail({ item }: any) {
           <span>&nbsp;М&nbsp;</span>&nbsp;&nbsp;200円(税抜)
           <span>&nbsp;Ｌ</span>&nbsp;&nbsp;300円(税抜)
         </label>
-        <OptionData size={size} priceM={priceM} priceL={priceL} price={price}/>
+        <Option size={size} priceM={priceM} priceL={priceL} price={price}/>
       </div>
       
       <Link href="/">
@@ -129,21 +132,29 @@ export async function getStaticProps({
 const fetcher = (resource: any, init: any) =>
   fetch(resource, init).then((res) => res.json());
 
-function OptionData(props: any):any {
+export function Option(props: any){
   const { data, error } = useSWR('/api/options', fetcher);
-
+  
   if (error) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;
-
-  const size = props.size;
-  const price = props.price;
 
   const optionPriceM = data[0].priceM;
   const optionPriceL = data[0].priceL;
 
+  const size = props.size;
+  const price = props.price;
+  
+  
   // オプションの料金がどっちか
   let optionPrice = size ? optionPriceM : optionPriceL;
   console.log(optionPrice);
+
+  return <OptionData size={size} price={price} optionPrice={optionPrice} data={data} />
+}
+
+export function OptionData(props: any):any {
+  
+  const [singlePrice, setSinglePrice] = useState(props.price);
 
   function sizeJudge() {
     // チェックボックスにチェックが入っている数を数える
@@ -151,14 +162,13 @@ function OptionData(props: any):any {
       'input[type="checkbox"]:checked'
     ).length;
     console.log(checkCount);
-    const singlePrice = checkCount * optionPrice + Number(price);
+   setSinglePrice(checkCount * props.optionPrice + Number(props.price));
     console.log(singlePrice);
-    return singlePrice
   }
-
+  
   return (
     <div>
-      {data.map((d: any) => {
+      {props.data.map((d: any) => {
         return (
           <label key={d.id}>
             <input
@@ -170,20 +180,18 @@ function OptionData(props: any):any {
           </label>
         );
       })}
-      <Total price ={price} />
+      <Total singlePrice ={singlePrice} />
     </div>
   )
 }
 
 // 個数と合計値の計算
-function Total(props: any) {
+export function Total(props: any) {
 
-  console.log(`${props.test} は1つ分の値段です`);
-
-  const [number, setNumber] = useState(1);
+  const [itemCount, setItemCount] = useState(1);
 
   function totalCalc(num :number) {
-    setNumber(num)
+    setItemCount(num)
   }
 
   return (
@@ -206,7 +214,7 @@ function Total(props: any) {
 
       <div>
         <span>
-          この商品金額：<span>{number * props.price}</span>円(税抜)
+          この商品金額：<span>{itemCount * props.singlePrice}</span>円(税抜)
         </span>
       </div>
     </>
