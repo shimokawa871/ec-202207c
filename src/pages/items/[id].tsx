@@ -3,13 +3,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import useSWR from 'swr';
-import ItemList from '../../components/ItemList';
 import Header from '../../components/Header';
 import HeaderCart from 'components/HeaderCart';
 import HeaderOrder from 'components/HeaderOrder';
 import HeaderLogin from 'components/HeaderLogin';
 import HeaderLogout from 'components/HeaderLogout';
-import Layout from '../../components/layout';
+import styles from '../../styles/detail.module.css';
+
 
 export default function Detail({ item }: any) {
   // console.log(item);
@@ -23,7 +23,6 @@ export default function Detail({ item }: any) {
 
   const [price, setPrice] = useState(priceM);
   const [size, setSize] = useState(true);
-  const [] = useState();
 
   function calc(b: any) {
     // setPrice(price)
@@ -50,18 +49,21 @@ export default function Detail({ item }: any) {
         menu4={<HeaderLogout />}
       />  
 
-      <div>
-        <h3>商品詳細</h3>
+      <div className={styles.itemImgCenter}>
+        <h3 className={styles.textCenter}>商品詳細</h3>
 
-        <Image src={imagePath} width={100} height={100} alt="logo" />
+        <Image src={imagePath} width={300} height={200} alt="logo" />
       </div>
-      <h4>商品名:{name}</h4>
+      {/* 商品名 */}
+      <h4   className={styles.itemName}>{name}</h4>
       <p>
-        <span>説明:{description}</span>
+        {/* 説明 */}
+        <span>{description}</span>
       </p>
 
-      <div>
-        <span>サイズ</span>
+      <div className={styles.selectField}>
+        <span className={styles.selectMenu}>サイズ</span>
+        <br/>
         <label>
           <input
             type="radio"
@@ -70,7 +72,7 @@ export default function Detail({ item }: any) {
             onChange={(e: any) => calc(e.target.value)}
             checked
           />
-          <span>&nbsp;М&nbsp;</span>&nbsp;&nbsp;{priceM}円(税抜)
+          <span className={styles.price}>&nbsp;М&nbsp;</span>&nbsp;&nbsp;{priceM}円(税抜)
         </label>
         <label>
           <input
@@ -79,12 +81,12 @@ export default function Detail({ item }: any) {
             value={priceL}
             onChange={(e: any) => calc(e.target.value)}
           />
-          <span>&nbsp;Ｌ</span>&nbsp;&nbsp;{priceL}円(税抜)
+          <span className={styles.price}>&nbsp;Ｌ</span>&nbsp;&nbsp;{priceL}円(税抜)
         </label>
       </div>
 
-      <div>
-        <label>
+      <div className={styles.selectField}>
+        <label className={styles.selectMenu}>
           トッピング：&nbsp;1つにつき
           <span>&nbsp;М&nbsp;</span>&nbsp;&nbsp;200円(税抜)
           <span>&nbsp;Ｌ</span>&nbsp;&nbsp;300円(税抜)
@@ -92,9 +94,9 @@ export default function Detail({ item }: any) {
         <Option size={size} priceM={priceM} priceL={priceL} price={price}/>
       </div>
       
-      <Link href="/">
+      <Link href="/items">
         <a>
-          <input type="submit" value="カートに入れる" />
+          <input className={styles.cartAddButton} type="submit" value="カートに入れる" />
         </a>
       </Link>
     </>
@@ -168,6 +170,7 @@ export function OptionData(props: any):any {
   
   return (
     <div>
+      <div className={styles.selectField}>
       {props.data.map((d: any) => {
         return (
           <label key={d.id}>
@@ -180,6 +183,7 @@ export function OptionData(props: any):any {
           </label>
         );
       })}
+      </div>
       <Total singlePrice ={singlePrice} />
     </div>
   )
@@ -196,10 +200,13 @@ export function Total(props: any) {
 
   return (
     <>
-      <div>
+      <div className={styles.selectField}>
         <label>
-          数量:数量を選択してください
+          <span className={styles.selectMenu}>数量：<br/>
+          数量を選択してください</span>
+          <br/>
           <select
+            className={styles.selectBox}
             name="area"
             onChange={(e: any) => totalCalc(e.target.value)}
           >
@@ -213,7 +220,7 @@ export function Total(props: any) {
       </div>
 
       <div>
-        <span>
+        <span className={styles.totalPrice}>
           この商品金額：<span>{itemCount * props.singlePrice}</span>円(税抜)
         </span>
       </div>

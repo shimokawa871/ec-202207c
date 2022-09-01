@@ -1,0 +1,55 @@
+/* input :hover{
+  cursor: pointer;
+} */
+
+.price {
+  width: 175px;
+  height: 175px;
+  /* 背景色 */
+  background-color: #ff4500;
+  /* 角を丸くする */
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+}
+
+.textCenter {
+  font-size: 30px;
+}
+
+.itemName {
+  font-size: 25px;
+}
+
+.selectField {
+  padding-bottom: 30px;
+}
+
+.selectMenu {
+  font-weight: bold;
+}
+
+.selectBox {
+  width: 80px;
+  font-size: 20px;
+}
+
+.cartAddButton {
+  background-color: #ff6347;
+  color: white;
+  font-weight: bold;
+  border-radius: 10%;
+  border: none;
+  padding: 8px 15px;
+}
+
+/* 合計金額の文字の大きさを変える */
+span.totalPrice {
+  font-size: 30px;
+}
+
+/* 中央寄せにする*/
+.itemImgCenter {
+  margin-left: auto;
+  margin-right: auto;
+}
