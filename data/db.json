@@ -88,15 +88,32 @@
   "orders": [],
   "orderItems": [
     {
-      "id": 1,
-      "itemId": 2,
-      "orderId": 1,
-      "quantity": 1,
+      "name": "きのことベーコン",
+      "imagePath": "/2.jpg",
       "size": "M",
-      "item": "きのことベーコン",
+      "price": 1200,
+      "quantity": 2,
       "orderToppingList": [
-        "ピーマン","ベーコン"
-      ]
+        "ピーマン",
+        "ベーコン"
+      ],
+      "optionPrice": 200,
+      "subTotal": 3200,
+      "id": 1
+    },
+    {
+      "name": "きのことベーコン",
+      "imagePath": "/2.jpg",
+      "size": "L",
+      "price": 1500,
+      "quantity": 1,
+      "orderToppingList": [
+        "ピーマン",
+        "ベーコン"
+      ],
+      "optionPrice": 300,
+      "subTotal": 1800,
+      "id": 2
     }
   ],
   "orderOptions": []
