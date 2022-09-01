@@ -1,0 +1,19 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  background-color: #fffacd;
+}
+.headerMenu {
+  width: auto;
+}
+.menu {
+  list-style: none;
+  display: flex;
+  gap: 3%;
+  padding-left: 0;
+  min-width: 400px;
+}
+.menuList {
+  white-space: nowrap;
+  color: #ff6347;
+}
