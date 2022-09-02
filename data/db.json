@@ -86,6 +86,42 @@
     }
   ],
   "orders": [],
-  "orderItems": [],
+  "orderItems": [
+    {
+      "name": "きのことベーコン",
+      "imagePath": "/2.jpg",
+      "size": "L",
+      "price": 1500,
+      "quantity": 1,
+      "orderToppingList": [
+        "ピーマン",
+        "ベーコン"
+      ],
+      "optionPrice": 300,
+      "subTotal": 1800,
+      "id": 5
+    },
+    {
+      "name": "きのことベーコン",
+      "id": 2,
+      "description": "きのことベーコンのピザ",
+      "priceM": "1380",
+      "priceL": "2380",
+      "size": "M",
+      "piece": "1",
+      "imagePath": "/2.jpg"
+    },
+    {
+      "name": "シーフード",
+      "description": "海老やイカがのったピザ",
+      "priceM": "1380",
+      "priceL": "2380",
+      "size": "M",
+      "piece": "1",
+      "imagePath": "/4.jpg",
+      "id": 4
+    }
+    
+  ],
   "orderOptions": []
 }

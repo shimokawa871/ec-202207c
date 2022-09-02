@@ -11,6 +11,6 @@ export default function loginHandler(
 ) {
   res.setHeader('Set-Cookie', ['userId=1']);
           res.status(200).json({
-            console.log(req.body(?))
+            // console.log(req.body(?))
           });
 }
