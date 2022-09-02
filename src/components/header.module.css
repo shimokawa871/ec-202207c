@@ -17,3 +17,6 @@
   white-space: nowrap;
   color: #ff6347;
 }
+.menuList:hover {
+  color: #228b22;
+}

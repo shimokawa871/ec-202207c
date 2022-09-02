@@ -6,7 +6,7 @@ export default function Header(props: any) {
   return (
     <header className={styles.header}>
       <h1>
-        <Link href={'/api/items'}>
+        <Link href={'/items'}>
           <Image
             src={'/header_logo.png'}
             alt="ロゴ"

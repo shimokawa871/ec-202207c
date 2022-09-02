@@ -20,6 +20,18 @@ const nextConfig = {
         source: '/api/options',
         destination: 'http://localhost:8000/options',
       },
+      {
+      source: '/api/orders',
+      destination: 'http://localhost:8000/orders',
+      },
+      {
+        source: '/api/login',
+        destination: 'http://localhost:8000/login',
+      },
+      {
+        source: '/api/orderItems',
+        destination: 'http://localhost:8000/orderItems',
+      },
     ];
   },
 };

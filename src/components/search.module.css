@@ -31,6 +31,7 @@
   border-radius: 10%;
   border: none;
   padding: 8px 15px;
+  width: 70px;
 }
 .clearButton {
   background-color: lightgray;
@@ -39,4 +40,21 @@
   border-radius: 10%;
   border: none;
   padding: 8px 15px;
+  width: 70px;
+}
+.searchButton:hover {
+  background-color: white;
+  color: #ff6347;
+  outline: solid #ff6347;
+}
+.clearButton:hover {
+  background-color: white;
+  color: #a9a9a9;
+  outline: solid lightgray;
+}
+.searchResult {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 0 auto;
 }

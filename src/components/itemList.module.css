@@ -12,8 +12,15 @@
   border: solid;
   border-color: lightgray;
   margin: 15px;
+  width: 200px;
 }
-
+.item:hover {
+  transform: translate(0, -2px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+.itemName {
+  margin: 10px 0;
+}
 .sizeM {
   background-color: #ff6347;
   padding: 1px;

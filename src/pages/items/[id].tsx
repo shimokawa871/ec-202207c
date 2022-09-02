@@ -3,9 +3,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import useSWR from 'swr';
+import Header from '../../components/Header';
+import HeaderCart from 'components/HeaderCart';
+import HeaderOrder from 'components/HeaderOrder';
+import HeaderLogin from 'components/HeaderLogin';
+import HeaderLogout from 'components/HeaderLogout';
+import styles from '../../styles/detail.module.css';
 
 export default function Detail({ item }: any) {
-  console.log(item);
 
   const id = item.id;
   const name = item.name;
@@ -14,19 +19,20 @@ export default function Detail({ item }: any) {
   const description = item.description;
   const imagePath = item.imagePath;
 
-  const [price, setPrice] = useState(0);
-  const [total, setTotal] = useState(0);
-  const [number, setNumber] = useState(1);
-  const [size, setSize] = useState("");
+  const [price, setPrice] = useState(priceM);
+  const [size, setSize] = useState(true);
 
-  function calc(price: any) {
-    setPrice(price);
-    setNumber(number);
-    setSize(price);
+  // 追加したオプションの種類を格納する箱
+  const [optionList, setOptionList] = useState([]);
 
-    // console.log(price);
-    // console.log(number);
-    setTotal(price * number);
+
+  function calc(b: any) {
+    setPrice(b);
+
+    // サイズの取得方法変える
+    let elements = document.getElementsByName('sizeChoice');
+    // 0はMサイズ（true）1はLサイズ（false）
+    setSize(elements[0].checked);
   }
 
   return (
@@ -35,81 +41,69 @@ export default function Detail({ item }: any) {
         <title>らくらくピザ屋 - 商品詳細</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <header>{/* Headerコンポーネント */}</header>
-      <div>
-        <h3>商品詳細</h3>
 
-        <Image src={imagePath} width={100} height={100} alt="logo" />
+      <Header
+        menu1={<HeaderCart />}
+        menu2={<HeaderOrder />}
+        menu3={<HeaderLogin />}
+        menu4={<HeaderLogout />}
+      />
+
+      <div className={styles.itemImgCenter}>
+        <h3 className={styles.textCenter}>商品詳細</h3>
+
+        <Image src={imagePath} width={300} height={200} alt="logo" />
       </div>
-      <h4>商品名:{name}</h4>
+      {/* 商品名 */}
+      <h4 className={styles.itemName}>{name}</h4>
       <p>
-        <span>説明:{description}</span>
+        {/* 説明 */}
+        <span>{description}</span>
       </p>
-
-      <div>
-        <span>サイズ</span>
+      <div className={styles.selectField}>
+        <span className={styles.selectMenu}>サイズ</span>
+        <br />
         <label>
           <input
             type="radio"
-            name="size-choice"
+            name="sizeChoice"
             value={priceM}
             onChange={(e: any) => calc(e.target.value)}
+            checked
           />
-          <span>&nbsp;М&nbsp;</span>&nbsp;&nbsp;{priceM}円(税抜)
+          <span className={styles.price}>&nbsp;М&nbsp;</span>
+          &nbsp;&nbsp;{priceM}円(税抜)
         </label>
         <label>
           <input
             type="radio"
-            name="size-choice"
+            name="sizeChoice"
             value={priceL}
             onChange={(e: any) => calc(e.target.value)}
           />
-          <span>&nbsp;Ｌ</span>&nbsp;&nbsp;{priceL}円(税抜)
+          <span className={styles.price}>&nbsp;Ｌ</span>&nbsp;&nbsp;
+          {priceL}円(税抜)
         </label>
       </div>
 
-      <div>
-        <label>
-          トッピング：&nbsp;1つにつき
+      <div className={styles.selectField}>
+        <label className={styles.selectMenu}>
+          トッピング：
+          <br />
+          &nbsp;1つにつき
           <span>&nbsp;М&nbsp;</span>&nbsp;&nbsp;200円(税抜)
           <span>&nbsp;Ｌ</span>&nbsp;&nbsp;300円(税抜)
         </label>
-        <OptionData size ={size} />
+        <Option
+          name={name}
+          size={size}
+          priceM={priceM}
+          priceL={priceL}
+          price={price}
+          imagePath={imagePath}
+          optionList={optionList}
+        />
       </div>
-      <div>
-        <label>
-          数量:数量を選択してください
-          <select
-            name="area"
-            onChange={(e: any) => setNumber(e.target.value)}
-          >
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option>
-          </select>
-        </label>
-      </div>
-
-      <div>
-        <span>
-          この商品金額：<span>{total}</span>円(税抜)
-        </span>
-      </div>
-      {/* リンク先変える */}
-      <Link href="/">
-        <a>
-          <input type="submit" value="カートに入れる" />
-        </a>
-      </Link>
     </>
   );
 }
@@ -145,34 +139,211 @@ export async function getStaticProps({
 const fetcher = (resource: any, init: any) =>
   fetch(resource, init).then((res) => res.json());
 
-function OptionData({size}) {
+export function Option(props: any) {
   const { data, error } = useSWR('/api/options', fetcher);
 
   if (error) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;
 
-  console.log(data);
-  console.log(data.name);
+  // dataは配列で、オプションの情報が入っている
 
-  function sizeJudge() {
-    console.log(size);
+  const optionPriceM = data[0].priceM;
+  const optionPriceL = data[0].priceL;
 
-    // sizeMとsizeLの値はそれぞれ違うけどとりあえず1のデータで！
-    if(size === 1380){
-      console.log(size);
-    }
+  const size = props.size;
+  const price = props.price;
+  const name = props.name;
+  const imagePath = props.imagePath;
+  const optionList = props.optionList;
+
+  // オプションの料金がどっちか
+  let optionPrice = size ? optionPriceM : optionPriceL;
+
+  return (
+    <OptionData
+      name={name}
+      size={size}
+      price={price}
+      optionPrice={optionPrice}
+      data={data}
+      imagePath={imagePath}
+      optionList={optionList}
+    />
+  );
+}
+
+export function OptionData(props: any): any {
+  const [singlePrice, setSinglePrice] = useState(props.price);
+
+  const price = props.price;
+  const name = props.name;
+  const imagePath = props.imagePath;
+  const size = props.size;
+  const optionPrice = props.optionPrice;
+  const optionList = props.optionList;
+
+  function sizeJudge(name: string) {
+    // チェックボックスにチェックが入っている数を数える
+    const checkCount = document.querySelectorAll(
+      'input[type="checkbox"]:checked'
+    ).length;
+    // console.log(checkCount);
+    setSinglePrice(
+      checkCount * props.optionPrice + Number(props.price)
+    );
+    // console.log(singlePrice);
+
+    // オプションの名前を追加する
+    optionList.push(name)
+    // console.log(optionList);
   }
 
   return (
     <div>
-      {data.map((d: any) => {
-        return (
-          <label key={d.id}>
-            <input type="checkbox" value={d.name} onChange={() => sizeJudge()} />
-            {d.name}
-          </label>
-        );
-      })}
+      <div className={styles.selectField}>
+        {props.data.map((d: any) => {
+          return (
+            <label key={d.id}>
+              <input
+                type="checkbox"
+                value={d.name}
+                onChange={() => sizeJudge(d.name)}
+              />
+              {d.name}
+            </label>
+          );
+        })}
+      </div>
+      <Total
+        singlePrice={singlePrice}
+        price={price}
+        name={name}
+        imagePath={imagePath}
+        size={size}
+        optionPrice={optionPrice}
+        optionList={optionList}
+      />
     </div>
+  );
+}
+
+// 個数と合計値の計算
+export function Total(props: any) {
+  const [itemCount, setItemCount] = useState(1);
+
+  function totalCalc(num: number) {
+    setItemCount(num);
+  }
+
+  const total = itemCount * props.singlePrice;
+
+  return (
+    <>
+      <div className={styles.selectField}>
+        <label>
+          <span className={styles.selectMenu}>
+            数量：
+            <br />
+            数量を選択してください
+          </span>
+          <br />
+          <select
+            className={styles.selectBox}
+            name="area"
+            onChange={(e: any) => totalCalc(e.target.value)}
+          >
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </label>
+      </div>
+
+      <div>
+        <span className={styles.totalPrice}>
+          この商品金額：<span>{total}</span>
+          円(税抜)
+        </span>
+      </div>
+
+      <AddCart
+        total={total}
+        itemCount={itemCount}
+        price={props.price}
+        name={props.name}
+        imagePath={props.imagePath}
+        size={props.size}
+        optionPrice={props.optionPrice}
+        optionList={props.optionList}
+      />
+    </>
+  );
+}
+
+export function AddCart({
+  total,
+  itemCount,
+  price,
+  name,
+  imagePath,
+  size,
+  optionPrice,
+  optionList
+}: any) {
+  // カートに情報をプッシュする
+  const add = (e: any) => {
+    // e.preventDefault();
+    console.log('カートに追加完了');
+
+    if (size) {
+      size = 'M';
+    } else {
+      size = 'L';
+    }
+
+    // サーバへ送りたいデータ
+    const output = {
+      name: name,
+      imagePath: imagePath,
+      size: size,
+      price: price, //1枚あたり（オプションなし）の値段
+      quantity: itemCount,
+      orderToppingList: optionList,
+      optionPrice: optionPrice, //Optionコンポーネント ---> optionPriceの値（200円か300円か）
+      subTotal: total, //Totalコンポーネント ---> totalの値
+    };
+
+    // FetchAPIのオプション準備
+    const param = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8',
+      },
+      // リクエストボディ
+      body: JSON.stringify(output),
+    };
+
+    fetch('http://localhost:8000/orderItems', param)
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        // console.log(data);
+      });
+  };
+
+  return (
+    <Link href="/items">
+      <a>
+        <input
+          className={styles.cartAddButton}
+          type="submit"
+          value="カートに入れる"
+          onClick={add}
+        />
+      </a>
+    </Link>
   );
 }
