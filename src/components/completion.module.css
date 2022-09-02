@@ -1,0 +1,22 @@
+.comContents {
+  text-align: center;
+}
+.title {
+  font-size: 1.5rem;
+}
+.text {
+  line-height: 2;
+}
+.topButton {
+  background-color: #ff6347;
+  color: white;
+  font-weight: bold;
+  border-radius: 7%;
+  border: none;
+  padding: 10px 30px;
+}
+.topButton:hover {
+  background-color: white;
+  color: #ff6347;
+  outline: solid #ff6347;
+}
