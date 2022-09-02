@@ -8,49 +8,189 @@
       "tel": "03-6675-3638",
       "password": "ikuri.kijima",
       "Cpassword": "ikuri",
-      "id": "1"
+      "id": 1
     }
   ],
   "items": [
     {
+      "id": 81,
+      "type": "pizza",
       "name": "じゃがバターベーコン",
-      "id": 1,
-      "description": "じゃがいもとベーコンのピザ",
-      "priceM": "1380",
-      "priceL": "2380",
-      "imagePath": "/1.jpg"
+      "description": "ホクホクのポテトと旨味が凝縮されたベーコンを特製マヨソースで味わって頂く商品です。バター風味豊かなキューブチーズが食材の味を一層引き立てます。",
+      "priceM": 1490,
+      "priceL": 2570,
+      "imagePath": "/1.jpg",
+      "deleted": false
     },
     {
-      "name": "きのことベーコン",
-      "id": 2,
-      "description": "きのことベーコンのピザ",
-      "priceM": "1100",
-      "priceL": "2100",
-      "imagePath": "/2.jpg"
+      "id": 82,
+      "type": "pizza",
+      "name": "アスパラ・ミート",
+      "description": "グリーンアスパラと相性の良いベーコンにいろどりのフレッシュトマトをトッピングし特製マヨソースでまとめた商品です",
+      "priceM": 1490,
+      "priceL": 2570,
+      "imagePath": "/2.jpg",
+      "deleted": false
     },
     {
-      "name": "マルゲリータ",
-      "description": "トマトソースのピザ",
-      "priceM": "1150",
-      "priceL": "2150",
+      "id": 83,
+      "type": "pizza",
+      "name": "熟成ベーコンとマッシュルーム",
+      "description": "マッシュルームと熟成ベーコンにブラックペッパーをトッピングしたシンプルなピザ！",
+      "priceM": 1490,
+      "priceL": 2570,
       "imagePath": "/3.jpg",
-      "id": 3
+      "deleted": false
     },
     {
-      "name": "シーフード",
-      "description": "海老やイカがのったピザ",
-      "priceM": "1560",
-      "priceL": "2560",
+      "id": 84,
+      "type": "pizza",
+      "name": "カレーじゃがバター",
+      "description": "マイルドな味付けのカレーに大きくカットしたポテトをのせた、バターとチーズの風味が食欲をそそるお子様でも楽しめる商品です",
+      "priceM": 1900,
+      "priceL": 2980,
       "imagePath": "/4.jpg",
-      "id": 4
+      "deleted": false
     },
     {
-      "name": "コーンマヨ",
-      "description": "コーンがのったピザ",
-      "priceM": "1150",
-      "priceL": "2150",
+      "id": 85,
+      "type": "pizza",
+      "name": "明太バターチーズ",
+      "description": "大きくカットしたポテトにコーンとベーコンをトッピングして、明太クリームソース、バター、チーズを合わせた、家族で楽しめるピザです",
+      "priceM": 1900,
+      "priceL": 2980,
       "imagePath": "/5.jpg",
-      "id": 5
+      "deleted": false
+    },
+    {
+      "id": 86,
+      "type": "pizza",
+      "name": "濃厚Gorgeous4",
+      "description": "「厚切イベリコ」、「贅沢フォルマッジ」「ラクラクピザ・シュプリーム」「アボカドシュリンプ」4種類の濃厚な味わいが一つで楽しめるピザです",
+      "priceM": 2700,
+      "priceL": 4050,
+      "imagePath": "/6.jpg",
+      "deleted": false
+    },
+    {
+      "id": 87,
+      "type": "pizza",
+      "name": "ピザベスト4",
+      "description": "ラクラクピザの人気ピザ\"ベスト4\"（「アイダホ風ほっくりポテマヨ」、「フレッシュモッツァレラのマルゲリータ」、「特うまプルコギ」",
+      "priceM": 2570,
+      "priceL": 3780,
+      "imagePath": "/7.jpg",
+      "deleted": false
+    },
+    {
+      "id": 88,
+      "type": "pizza",
+      "name": "Charity4",
+      "description": "「デラックス」、「ミート・シュプリーム」、「ツナマイルド」、「ガーリック・トマト」の組み合わせ。「チャリティー4」1枚のご注文につき、世界の飢餓救済に",
+      "priceM": 2160,
+      "priceL": 3380,
+      "imagePath": "/8.jpg",
+      "deleted": false
+    },
+    {
+      "id": 89,
+      "type": "pizza",
+      "name": "特うまプルコギ",
+      "description": "ミートナンバー１！甘辛ダレの焼肉がクセになる！食べると思わず元気が出るラクラクピザの自信作",
+      "priceM": 2700,
+      "priceL": 4050,
+      "imagePath": "/9.jpg",
+      "deleted": false
+    },
+    {
+      "id": 90,
+      "type": "pizza",
+      "name": "フレッシュモッツァレラ",
+      "description": "ピザの王道！トマトとフレッシュモッツァレラが絶妙です",
+      "priceM": 2160,
+      "priceL": 3380,
+      "imagePath": "/10.jpg",
+      "deleted": false
+    },
+    {
+      "id": 91,
+      "type": "pizza",
+      "name": "Specialミート4",
+      "description": "お肉好きの方必見！ラクラクピザ人気のミートシリーズが1枚のピザになって新登場！「厚切イベリコ」「ワイルド・ガーリック」「特うまプルコギ」",
+      "priceM": 2700,
+      "priceL": 4050,
+      "imagePath": "/11.jpg",
+      "deleted": false
+    },
+    {
+      "id": 92,
+      "type": "pizza",
+      "name": "バラエティー４",
+      "description": "「めちゃマヨ・ミート」「ガーリック・トマト」「えびマヨコーン」、「フレッシュモッツァレラのマルゲリータ」が一つになった4種のピザ",
+      "priceM": 2160,
+      "priceL": 3380,
+      "imagePath": "/12.jpg",
+      "deleted": false
+    },
+    {
+      "id": 93,
+      "type": "pizza",
+      "name": "めちゃマヨミート",
+      "description": "あらびきスライスソーセージとイタリアンソーセージの2種類のソーセージを、トマトソースと特製マヨソースの2種類のソースで召し上がって頂く商品です",
+      "priceM": 2160,
+      "priceL": 3380,
+      "imagePath": "/13.jpg",
+      "deleted": false
+    },
+    {
+      "id": 94,
+      "type": "pizza",
+      "name": "とろけるビーフシチュー",
+      "description": "デミグラスソースでじっくり煮込んだ旨味たっぷりのビーフシチューのピザ",
+      "priceM": 2980,
+      "priceL": 4460,
+      "imagePath": "/14.jpg",
+      "deleted": false
+    },
+    {
+      "id": 95,
+      "type": "pizza",
+      "name": "シーフードミックス",
+      "description": "シーフードナンバー１！魚介の旨みたっぷり！人気の海の幸と、野菜のリッチなおいしさ",
+      "priceM": 2700,
+      "priceL": 4050,
+      "imagePath": "/15.jpg",
+      "deleted": false
+    },
+    {
+      "id": 96,
+      "type": "pizza",
+      "name": "Family４",
+      "description": "ラクラクピザ自慢「特うまプルコギ」定番「デラックス」お子様に人気「ツナマイルド」女性に好評「チーズ＆チーズ」の４種のおいしさを贅沢に組み合わせました",
+      "priceM": 2440,
+      "priceL": 3650,
+      "imagePath": "/16.jpg",
+      "deleted": false
+    },
+    {
+      "id": 97,
+      "type": "pizza",
+      "name": "アイダホ風ほっくりポテマヨ",
+      "description": "みんな大好き！ポテトと特製マヨソースの組み合わせ！定番のおいしさを味わえます",
+      "priceM": 2440,
+      "priceL": 3650,
+      "imagePath": "/17.jpg",
+      "deleted": false
+    },
+    {
+      "id": 98,
+      "type": "pizza",
+      "name": "贅沢フォルマッジ",
+      "description": "濃厚なカマンベールソース＆カマンベールと香りとコクのパルメザンチーズをトッピング",
+      "priceM": 2700,
+      "priceL": 4050,
+      "imagePath": "/18.jpg",
+      "deleted": false
     }
   ],
   "options": [
@@ -83,7 +223,26 @@
       "name": "ほうれん草",
       "priceM": 200,
       "priceL": 300
+    },
+    {
+      "id": 6,
+      "name": "ぺパロに",
+      "priceM": 200,
+      "priceL": 300
+    },
+    {
+      "id": 7,
+      "name": "グリルナス",
+      "priceM": 200,
+      "priceL": 300
+    },
+    {
+      "id": 8,
+      "name": "あらびきソーセージ",
+      "priceM": 200,
+      "priceL": 300
     }
+    
   ],
   "orders": [],
   "orderItems": [],

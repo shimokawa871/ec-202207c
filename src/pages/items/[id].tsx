@@ -12,6 +12,7 @@ import styles from '../../styles/detail.module.css';
 
 export default function Detail({ item }: any) {
 
+  // getStaticPripsでとってきたdb.json（items）のデータ
   const id = item.id;
   const name = item.name;
   const priceM = item.priceM;
@@ -19,17 +20,19 @@ export default function Detail({ item }: any) {
   const description = item.description;
   const imagePath = item.imagePath;
 
+  // MサイズかLサイズか
   const [price, setPrice] = useState(priceM);
   const [size, setSize] = useState(true);
 
   // 追加したオプションの種類を格納する箱
   const [optionList, setOptionList] = useState([]);
 
-
+  // サイズを選んだ時に走る処理
   function calc(b: any) {
     setPrice(b);
 
-    // サイズの取得方法変える
+    // サイズの判定
+    // DOMは使わない方がいいらしいから違う方法探す
     let elements = document.getElementsByName('sizeChoice');
     // 0はMサイズ（true）1はLサイズ（false）
     setSize(elements[0].checked);
@@ -62,7 +65,7 @@ export default function Detail({ item }: any) {
       </p>
       <div className={styles.selectField}>
         <span className={styles.selectMenu}>サイズ</span>
-        <br />
+        <br/>
         <label>
           <input
             type="radio"
@@ -144,9 +147,10 @@ export function Option(props: any) {
 
   if (error) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;
+  // dataはdb.json（orderItems）の情報が入っている
 
-  // dataは配列で、オプションの情報が入っている
-
+  //Mサイズ、Lサイズそれぞれの値段を取得
+  // 要検討 
   const optionPriceM = data[0].priceM;
   const optionPriceL = data[0].priceL;
 
@@ -173,6 +177,8 @@ export function Option(props: any) {
 }
 
 export function OptionData(props: any): any {
+
+  // 1枚の値段（オプションなしで）
   const [singlePrice, setSinglePrice] = useState(props.price);
 
   const price = props.price;
@@ -182,20 +188,19 @@ export function OptionData(props: any): any {
   const optionPrice = props.optionPrice;
   const optionList = props.optionList;
 
+  // オプションにチェックを入れると処理が走る
   function sizeJudge(name: string) {
     // チェックボックスにチェックが入っている数を数える
+    // DOM操作しない方がいいらしいので他の方法を探す
     const checkCount = document.querySelectorAll(
       'input[type="checkbox"]:checked'
     ).length;
-    // console.log(checkCount);
     setSinglePrice(
       checkCount * props.optionPrice + Number(props.price)
     );
-    // console.log(singlePrice);
 
-    // オプションの名前を追加する
+    // オプションを追加する
     optionList.push(name)
-    // console.log(optionList);
   }
 
   return (
@@ -335,7 +340,7 @@ export function AddCart({
   };
 
   return (
-    <Link href="/items">
+    <Link href="/items/cart">
       <a>
         <input
           className={styles.cartAddButton}
