@@ -10,7 +10,7 @@ const nextConfig = {
       },
       {
         source: '/api/items/:id',
-        destination: 'http://localhost:8000/items/:id',
+        destination: 'http://localhost:8000/items/:id', 
       },
       {
         source: '/api/users',
