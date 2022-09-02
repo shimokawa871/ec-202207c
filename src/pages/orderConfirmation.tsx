@@ -1,6 +1,6 @@
 import styleOrder from '../styles/styleOrderConfirmation.module.css';
 import React, { useState } from 'react';
-import type { NextPage } from 'next';
+import Link from 'next/link';
 
 //各フォームのデータ型cd
 // type FormData = {
@@ -11,20 +11,53 @@ import type { NextPage } from 'next';
 //   tel: string;
 // };
 
+//(export)
 const orderConfirmation = () => {
   //フォームにステートを付与
   const [orderFormData, setOrderFormData] = useState({
+    //status:0,
     userName: '',
     email: '',
-    zipcode: '',
+    zipCode: '',
     address: '',
     tel: '',
+    deliveryTime: '',
+    //payment:1,
   });
 
-  //フォームへの入力内容を反映
+  //フォームへの入力内容を反映[onChange]
   const handleChange = (event: any) => {
     const { name, value } = event.target;
     setOrderFormData({ ...orderFormData, [name]: value });
+  };
+
+  //[支払い方法のonChange]
+  //①支払い方法だけvalueを文字列から数値に変える
+  //②paymentが1だったらstatusも1、2だったら2
+  const [payment, setPayment] = useState(1);
+  const [status, setStatus] = useState(0);
+
+  const onChangePay = (event: any) => {
+    setPayment(Number(event.target.value));
+    setStatus(Number(event.target.value));
+  };
+
+  //ボタンのイベント
+  const onClickOrder = () => {
+    return fetch(`/api/orders`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        status: status,
+        destinationName: orderFormData.userName,
+        destinationEmail: orderFormData.email,
+        destinationZipCode: orderFormData.zipCode,
+        destinationAddress: orderFormData.address,
+        destinationTel: orderFormData.tel,
+        deliveryTime: orderFormData.deliveryTime,
+        paymentMethod: payment,
+      }),
+    }).then((res) => res.json());
   };
 
   return (
@@ -65,10 +98,10 @@ const orderConfirmation = () => {
           </p>
           <input
             className={styleOrder.formInput}
-            name="zipcode"
+            name="zipCode"
             type="text"
             placeholder="(注意)ハイフンなし"
-            value={orderFormData.zipcode}
+            value={orderFormData.zipCode}
             onChange={handleChange}
           />
           <br />
@@ -110,7 +143,12 @@ const orderConfirmation = () => {
             <p className={styleOrder.information}>
               配達日時を入力してください
             </p>
-            <input className={styleOrder.formInput} type="date" />
+            <input
+              className={styleOrder.formInput}
+              type="date"
+              // value={orderFormData.deliveryTime}
+              onChange={handleChange}
+            />
             <input
               className={styleOrder.formInput}
               type="time"
@@ -118,6 +156,8 @@ const orderConfirmation = () => {
               min="09:00"
               max="23:00"
               step="1800"
+              // value={orderFormData.deliveryTime}
+              onChange={handleChange}
             />
             <span></span>
             <datalist id="data-list">
@@ -160,21 +200,34 @@ const orderConfirmation = () => {
           </p>
           <div className={styleOrder.radioLabel}>
             <label className={styleOrder.labelRadio}>
-              <input type="radio" name="payment" />
+              <input
+                type="radio"
+                name="payment"
+                value="1"
+                onChange={onChangePay}
+              />
               代金引換
             </label>
             <label className={styleOrder.labelRadio}>
-              <input type="radio" name="payment" />
+              <input
+                type="radio"
+                name="payment"
+                value="2"
+                onChange={onChangePay}
+              />
               クレジットカード
             </label>
           </div>
         </div>
-        <input
-          type="submit"
-          className={styleOrder.formBtn}
-          value="送信する"
-          // onClick=ここに送信後のロジックを実装
-        />
+        <Link href="/completion">
+          <input
+            type="submit"
+            className={styleOrder.formBtn}
+            value="送信する"
+            // onClick=ここに送信後のロジックを実装
+            onClick={() => onClickOrder()}
+          />
+        </Link>
       </form>
     </>
   );

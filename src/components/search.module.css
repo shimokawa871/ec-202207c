@@ -55,6 +55,8 @@
 .searchResult {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;
   margin: 0 auto;
+  gap: 10%;
+  width: 1100px;
 }
