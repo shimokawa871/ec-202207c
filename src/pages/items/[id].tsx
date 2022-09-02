@@ -11,7 +11,6 @@ import HeaderLogout from 'components/HeaderLogout';
 import styles from '../../styles/detail.module.css';
 
 export default function Detail({ item }: any) {
-  // console.log(item);
 
   const id = item.id;
   const name = item.name;
@@ -23,54 +22,18 @@ export default function Detail({ item }: any) {
   const [price, setPrice] = useState(priceM);
   const [size, setSize] = useState(true);
 
+  // 追加したオプションの種類を格納する箱
+  const [optionList, setOptionList] = useState([]);
+
+
   function calc(b: any) {
-    // setPrice(price)
     setPrice(b);
 
+    // サイズの取得方法変える
     let elements = document.getElementsByName('sizeChoice');
     // 0はMサイズ（true）1はLサイズ（false）
     setSize(elements[0].checked);
-    console.log(size);
   }
-
-  // カートに情報をプッシュする
-  const addCart = (e: any) => {
-    // e.preventDefault();
-    console.log('カートに追加完了');
-
-    // サーバへ送りたいデータ
-    const output =     {
-      "name": item.name,
-      "imagePath": item.imagePath,
-      "size": "未実装", //
-      "price": 12345, //
-      "quantity": "未実装", //
-      "orderToppingList": [ //
-        "未実装",
-        "未実装"
-      ],
-      "optionPrice": 12345,
-      "subTotal": 12345,
-    };
-
-    // FetchAPIのオプション準備
-    const param = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json; charset=utf-8',
-      },
-      // リクエストボディ
-      body: JSON.stringify(output),
-    };
-
-    fetch('http://localhost:8000/orderItems', param)
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        console.log(data);
-      });
-  };
 
   return (
     <>
@@ -132,23 +95,15 @@ export default function Detail({ item }: any) {
           <span>&nbsp;Ｌ</span>&nbsp;&nbsp;300円(税抜)
         </label>
         <Option
+          name={name}
           size={size}
           priceM={priceM}
           priceL={priceL}
           price={price}
+          imagePath={imagePath}
+          optionList={optionList}
         />
       </div>
-
-      <Link href="/items">
-      <a>
-      <input
-        className={styles.cartAddButton}
-        type="submit"
-        value="カートに入れる"
-        onClick={addCart}
-      />
-      </a>
-      </Link>
     </>
   );
 }
@@ -190,22 +145,29 @@ export function Option(props: any) {
   if (error) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;
 
+  // dataは配列で、オプションの情報が入っている
+
   const optionPriceM = data[0].priceM;
   const optionPriceL = data[0].priceL;
 
   const size = props.size;
   const price = props.price;
+  const name = props.name;
+  const imagePath = props.imagePath;
+  const optionList = props.optionList;
 
   // オプションの料金がどっちか
   let optionPrice = size ? optionPriceM : optionPriceL;
-  console.log(optionPrice);
 
   return (
     <OptionData
+      name={name}
       size={size}
       price={price}
       optionPrice={optionPrice}
       data={data}
+      imagePath={imagePath}
+      optionList={optionList}
     />
   );
 }
@@ -213,16 +175,27 @@ export function Option(props: any) {
 export function OptionData(props: any): any {
   const [singlePrice, setSinglePrice] = useState(props.price);
 
-  function sizeJudge() {
+  const price = props.price;
+  const name = props.name;
+  const imagePath = props.imagePath;
+  const size = props.size;
+  const optionPrice = props.optionPrice;
+  const optionList = props.optionList;
+
+  function sizeJudge(name: string) {
     // チェックボックスにチェックが入っている数を数える
     const checkCount = document.querySelectorAll(
       'input[type="checkbox"]:checked'
     ).length;
-    console.log(checkCount);
+    // console.log(checkCount);
     setSinglePrice(
       checkCount * props.optionPrice + Number(props.price)
     );
-    console.log(singlePrice);
+    // console.log(singlePrice);
+
+    // オプションの名前を追加する
+    optionList.push(name)
+    // console.log(optionList);
   }
 
   return (
@@ -234,14 +207,22 @@ export function OptionData(props: any): any {
               <input
                 type="checkbox"
                 value={d.name}
-                onChange={() => sizeJudge()}
+                onChange={() => sizeJudge(d.name)}
               />
               {d.name}
             </label>
           );
         })}
       </div>
-      <Total singlePrice={singlePrice} />
+      <Total
+        singlePrice={singlePrice}
+        price={price}
+        name={name}
+        imagePath={imagePath}
+        size={size}
+        optionPrice={optionPrice}
+        optionList={optionList}
+      />
     </div>
   );
 }
@@ -253,6 +234,8 @@ export function Total(props: any) {
   function totalCalc(num: number) {
     setItemCount(num);
   }
+
+  const total = itemCount * props.singlePrice;
 
   return (
     <>
@@ -280,10 +263,87 @@ export function Total(props: any) {
 
       <div>
         <span className={styles.totalPrice}>
-          この商品金額：<span>{itemCount * props.singlePrice}</span>
+          この商品金額：<span>{total}</span>
           円(税抜)
         </span>
       </div>
+
+      <AddCart
+        total={total}
+        itemCount={itemCount}
+        price={props.price}
+        name={props.name}
+        imagePath={props.imagePath}
+        size={props.size}
+        optionPrice={props.optionPrice}
+        optionList={props.optionList}
+      />
     </>
+  );
+}
+
+export function AddCart({
+  total,
+  itemCount,
+  price,
+  name,
+  imagePath,
+  size,
+  optionPrice,
+  optionList
+}: any) {
+  // カートに情報をプッシュする
+  const add = (e: any) => {
+    // e.preventDefault();
+    console.log('カートに追加完了');
+
+    if (size) {
+      size = 'M';
+    } else {
+      size = 'L';
+    }
+
+    // サーバへ送りたいデータ
+    const output = {
+      name: name,
+      imagePath: imagePath,
+      size: size,
+      price: price, //1枚あたり（オプションなし）の値段
+      quantity: itemCount,
+      orderToppingList: optionList,
+      optionPrice: optionPrice, //Optionコンポーネント ---> optionPriceの値（200円か300円か）
+      subTotal: total, //Totalコンポーネント ---> totalの値
+    };
+
+    // FetchAPIのオプション準備
+    const param = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8',
+      },
+      // リクエストボディ
+      body: JSON.stringify(output),
+    };
+
+    fetch('http://localhost:8000/orderItems', param)
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        // console.log(data);
+      });
+  };
+
+  return (
+    <Link href="/items">
+      <a>
+        <input
+          className={styles.cartAddButton}
+          type="submit"
+          value="カートに入れる"
+          onClick={add}
+        />
+      </a>
+    </Link>
   );
 }
