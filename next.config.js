@@ -6,11 +6,11 @@ const nextConfig = {
     return [
       {
         source: '/api/items',
-        destination: 'http://localhost:8000/',
+        destination: 'http://localhost:8000/items',
       },
       {
         source: '/api/items/:id',
-        destination: 'http://localhost:8000/items/:id',
+        destination: 'http://localhost:8000/items/:id', 
       },
       {
         source: '/api/users',
