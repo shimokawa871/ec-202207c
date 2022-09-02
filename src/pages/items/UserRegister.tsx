@@ -8,6 +8,8 @@ import React, { useRef } from 'react';
 import { fn } from 'jest-mock';
 import { type } from 'os';
 import { ChangeEvent } from 'jest-haste-map';
+import Link from 'next/link';
+import styleForm from 'styles/styleOrderConfirmation.module.css';
 
 //各フォームのデータ型cd
 type FormData = {
@@ -58,10 +60,34 @@ const UserRegister: NextPage = () => {
       id: '',
     });
 
+  //必須項目が入力されなかった場合
+  const alertSet = () => {
+    setFormData({
+      userName: '名前は必須項目です。',
+      email: 'メールアドレスは必須項目です。',
+      zipcode: '郵便番号は必須項目です。',
+      address: '住所は必須項目です。',
+      tel: '電話番号は必須項目です。',
+      password: 'パスワードは必須項目です。',
+      Cpassword: 'パスワードは必須項目です。',
+      id: '',
+    });
+  };
+  // setFormData({
+  //   userName: '名前は必須項目です。',
+  //   email: 'メールアドレスは必須項目です。',
+  //   zipcode: '郵便番号は必須項目です。',
+  //   address: '住所は必須項目です。',
+  //   tel: '電話番号は必須項目です。',
+  //   password: 'パスワードは必須項目です。',
+  //   Cpassword: 'パスワードは必須項目です。',
+  //   id: '',
+  // });
+
   //jsonserverへ登録（テスト）
   const onClickAdd = () => {
-    if (formData.userName === "") {
-      return alert("ユーザー名を登録してください。")
+    if (formData.userName === '') {
+      return alert('名前を入力してください');
     }
     return fetch('/api/users', {
       method: 'POST',
@@ -80,64 +106,116 @@ const UserRegister: NextPage = () => {
 
   return (
     <>
-      <h1>ユーザ登録</h1>
-      <div>
-        <p>名前:名前を入力してください</p>
-        <input
-          name="userName"
-          placeholder="Name"
-          value={formData.userName}
-          onChange={handleChange}
-        />
-        <p>メールアドレス:メールアドレスを入力してください</p>
-        <input
-          name="email"
-          placeholder="Email"
-          value={formData.email}
-          onChange={handleChange}
-        ></input>
-        <p>郵便番号: 郵便番号を入力してください</p>
-        <button>住所検索</button>
-        <input
-          name="zipcode"
-          placeholder="Zipcode"
-          value={formData.zipcode}
-          onChange={handleChange}
-        ></input>
-        <p>住所: 住所を入力してください</p>
-        <input
-          name="address"
-          placeholder="Address"
-          value={formData.address}
-          onChange={handleChange}
-        ></input>
-        <p>電話番号: 電話番号を入力してください</p>
-        <input
-          name="tel"
-          placeholder="Tel"
-          value={formData.tel}
-          onChange={handleChange}
-        ></input>
-        <p>パスワード: パスワードを入力してください</p>
-        <input
-          name="password"
-          placeholder="Password"
-          value={formData.password}
-          onChange={handleChange}
-        ></input>
-        <p>確認用パスワード: 確認用パスワードを入力してください</p>
-        <input
-          type="password"
-          name="Cpassword"
-          placeholder="Confirmation Password"
-          value={formData.Cpassword}
-          onChange={handleChange}
-        ></input>
-      </div>
-      <div>
-        <button onClick={onClickAdd}>登録</button>
-        <button onClick={onClickClear}>クリア</button>
-      </div>
+      <form className={styleForm.form}>
+        <h1 className={styleForm.labelTitle}>ユーザ登録</h1>
+        <div className={styleForm.formSample}>
+          <p className={styleForm.formLabel}>
+            <span className={styleForm.formRequire}>必須</span>氏名
+          </p>
+          <input
+            className={styleForm.formInput}
+            name="userName"
+            placeholder="Name"
+            value={formData.userName}
+            onChange={handleChange}
+          />
+        </div>
+        <div className={styleForm.formSample}>
+          <p className={styleForm.formLabel}>
+            <span className={styleForm.formRequire}>必須</span>
+            メールアドレス
+          </p>
+          <input
+            className={styleForm.formInput}
+            name="email"
+            placeholder="Email"
+            value={formData.email}
+            onChange={handleChange}
+          ></input>
+        </div>
+        <div className={styleForm.formSample}>
+          <p className={styleForm.formLabel}>
+            <span className={styleForm.formRequire}>必須</span>
+            郵便番号
+          </p>
+          <button>住所検索</button>
+          <input
+            className={styleForm.formInput}
+            name="zipcode"
+            placeholder="Zipcode"
+            value={formData.zipcode}
+            onChange={handleChange}
+          ></input>
+        </div>
+        <div className={styleForm.formSample}>
+          <p className={styleForm.formLabel}>
+            <span className={styleForm.formRequire}>必須</span>氏名
+          </p>
+          <input
+            className={styleForm.formInput}
+            name="address"
+            placeholder="Address"
+            value={formData.address}
+            onChange={handleChange}
+          ></input>
+        </div>
+        <div className={styleForm.formSample}>
+          <p className={styleForm.formLabel}>
+            <span className={styleForm.formRequire}>必須</span>
+            電話番号
+          </p>
+          <input
+            className={styleForm.formInput}
+            name="tel"
+            placeholder="Tel"
+            value={formData.tel}
+            onChange={handleChange}
+          ></input>
+        </div>
+        <div className={styleForm.formSample}>
+          <p className={styleForm.formLabel}>
+            <span className={styleForm.formRequire}>必須</span>
+            パスワード
+          </p>
+          <input
+            className={styleForm.formInput}
+            name="password"
+            placeholder="Password"
+            value={formData.password}
+            onChange={handleChange}
+          ></input>
+        </div>
+        <div className={styleForm.formSample}>
+          <p className={styleForm.formLabel}>
+            <span className={styleForm.formRequire}>必須</span>
+            確認用パスワード
+          </p>
+          <input
+            className={styleForm.formInput}
+            type="password"
+            name="Cpassword"
+            placeholder="Confirmation Password"
+            value={formData.Cpassword}
+            onChange={handleChange}
+          ></input>
+        </div>
+        <div>
+          <Link href="../login  ">
+            <input
+              className={styleForm.formBtn}
+              type="submit"
+              value="登録する"
+              onClick={onClickAdd}
+            />
+          </Link>
+          <input
+              className={styleForm.formBtn}
+              type="submit"
+              value="クリア"
+              onClick={onClickClear}
+            />
+        </div>
+      </form>
     </>
   );
 };
