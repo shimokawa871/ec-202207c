@@ -40,17 +40,17 @@ export default function Detail({ item }: any) {
 
     // サーバへ送りたいデータ
     const output =     {
-      "name": "きのことベーコン",
-      "imagePath": "/2.jpg",
-      "size": "L",
-      "price": 1500,
-      "quantity": 1,
-      "orderToppingList": [
-        "ピーマン",
-        "ベーコン"
+      "name": item.name,
+      "imagePath": item.imagePath,
+      "size": "未実装", //
+      "price": 12345, //
+      "quantity": "未実装", //
+      "orderToppingList": [ //
+        "未実装",
+        "未実装"
       ],
-      "optionPrice": 300,
-      "subTotal": 1800,
+      "optionPrice": 12345,
+      "subTotal": 12345,
     };
 
     // FetchAPIのオプション準備
@@ -139,16 +139,16 @@ export default function Detail({ item }: any) {
         />
       </div>
 
-      {/* <Link href="/items"> */}
-      {/* <a> */}
+      <Link href="/items">
+      <a>
       <input
         className={styles.cartAddButton}
         type="submit"
         value="カートに入れる"
         onClick={addCart}
       />
-      {/* </a> */}
-      {/* </Link> */}
+      </a>
+      </Link>
     </>
   );
 }
