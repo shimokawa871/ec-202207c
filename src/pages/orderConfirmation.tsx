@@ -1,6 +1,7 @@
 import styleOrder from '../styles/styleOrderConfirmation.module.css';
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Head from 'next/head';
 
 //各フォームのデータ型cd
 // type FormData = {
@@ -21,7 +22,7 @@ const orderConfirmation = () => {
     zipCode: '',
     address: '',
     tel: '',
-    deliveryTime: '',
+    //deliveryTime: '',
     //payment:1,
   });
 
@@ -42,6 +43,17 @@ const orderConfirmation = () => {
     setStatus(Number(event.target.value));
   };
 
+  //分けた(配達時間)
+  const [deliveryTime,setDeliveryTime] =useState('');
+  const onChangeTime = (event:any)=>{
+    setDeliveryTime(event.target.value);
+  }
+
+  const [deliveryDate,setDeliveryDate] = useState('');
+  const onChangeDate = (event:any)=>{
+    setDeliveryDate(event.target.value);
+  }
+
   //ボタンのイベント
   const onClickOrder = () => {
     return fetch(`/api/orders`, {
@@ -54,7 +66,7 @@ const orderConfirmation = () => {
         destinationZipCode: orderFormData.zipCode,
         destinationAddress: orderFormData.address,
         destinationTel: orderFormData.tel,
-        deliveryTime: orderFormData.deliveryTime,
+        deliveryTime: `${deliveryDate}　${deliveryTime}`,
         paymentMethod: payment,
       }),
     }).then((res) => res.json());
@@ -62,6 +74,10 @@ const orderConfirmation = () => {
 
   return (
     <>
+      <Head>
+        <title>注文確認画面</title>
+      </Head>
+
       <form className={styleOrder.form}>
         <p className={styleOrder.labelTitle}>お届け先情報</p>
         <div className={styleOrder.formSample}>
@@ -146,8 +162,8 @@ const orderConfirmation = () => {
             <input
               className={styleOrder.formInput}
               type="date"
-              // value={orderFormData.deliveryTime}
-              onChange={handleChange}
+              value={deliveryDate}
+              onChange={onChangeDate}
             />
             <input
               className={styleOrder.formInput}
@@ -156,8 +172,9 @@ const orderConfirmation = () => {
               min="09:00"
               max="23:00"
               step="1800"
-              // value={orderFormData.deliveryTime}
-              onChange={handleChange}
+              name="time"
+              value={deliveryTime}
+              onChange={onChangeTime}
             />
             <span></span>
             <datalist id="data-list">
