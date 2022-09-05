@@ -30,7 +30,7 @@ export default function ItemList() {
                     width={200}
                     height={125}
                   />
-                  <div>
+                  <div className={styles.itemText}>
                     <p className={styles.itemName}>{item.name}</p>
                     <br />
                     <span className={styles.sizeM}>

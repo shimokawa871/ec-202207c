@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styles from './search.module.css';
-import searchStyles from './itemList.module.css';
+import itemListStyles from './itemList.module.css';
 import useSWR from 'swr';
 import ItemList from './ItemList';
 import Link from 'next/link';
@@ -23,6 +23,7 @@ export default function Search() {
   if (error) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;
 
+  //検索ボタンイベント
   const onSearch = () => {
     setSearchData(
       data.filter((event: any) => {
@@ -30,6 +31,12 @@ export default function Search() {
       })
     );
   };
+
+  //クリアボタンイベント
+  const onClickClear = () => {
+    setSearchWord('');
+    setSearchData([]);
+  }
 
   return (
     <>
@@ -60,7 +67,10 @@ export default function Search() {
           検索
         </button>
         &nbsp;&nbsp;
-        <button type="reset" className={styles.clearButton}>
+        <button
+        type="reset"
+        onClick={()=>onClickClear()}
+        className={styles.clearButton}>
           クリア
         </button>
       </form>
@@ -71,7 +81,7 @@ export default function Search() {
         ) : (
           searchData.map((item: any) => {
             return (
-              <div key={item.id} className={searchStyles.item}>
+              <div key={item.id} className={itemListStyles.item}>
                 <Link href={`/items/${item.id}`}>
                   <a>
                     <Image
@@ -80,17 +90,17 @@ export default function Search() {
                       width={200}
                       height={125}
                     />
-                    <div>
-                      <p className={searchStyles.itemName}>
+                    <div className={itemListStyles.itemText}>
+                      <p className={itemListStyles.itemName}>
                         {item.name}
                       </p>
                       <br />
-                      <span className={searchStyles.sizeM}>
+                      <span className={itemListStyles.sizeM}>
                         &nbsp;M&nbsp;
                       </span>
                       &nbsp;{item.priceM}円(税抜)
                       <br />
-                      <span className={searchStyles.sizeL}>
+                      <span className={itemListStyles.sizeL}>
                         &nbsp;L&nbsp;
                       </span>
                       &nbsp;{item.priceL}円(税抜)
