@@ -1,0 +1,32 @@
+/* cartのやつ */
+.searchContents {
+  text-align: center;
+  width: 80%;
+  padding: 5%;
+  margin: 1% auto 3% auto;
+  border-radius: 5%;
+  border-style: dashed;
+  border-color: #f0e68c;
+  border-width: 3px;
+}
+/* 
+.th{
+  font-size: 20px;
+  margin: 0 90px 0 0px;
+  table-layout: auto;
+  width: auto; 
+} */
+
+.btn{
+  text-align: center;
+  font-size: large;
+  background-color: #ff6347;
+  border: solid #ff6347;
+  border-radius: 50%;
+  line-height: 3;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  margin-top: 20px;
+  padding: 0 30px;
+}

@@ -7,19 +7,23 @@
   text-align: center;
   margin: 0 auto;
 }
-
 .item {
   border: solid;
   border-color: lightgray;
   margin: 15px;
   width: 200px;
+  height: 270px;
+  text-align: center;
 }
 .item:hover {
   transform: translate(0, -2px);
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
 .itemName {
-  margin: 10px 0;
+    display: inline-block;
+  margin: 15px 0;
+  height: 48px;
+  vertical-align: middle;
 }
 .sizeM {
   background-color: #ff6347;
