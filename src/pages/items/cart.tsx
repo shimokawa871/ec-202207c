@@ -30,7 +30,7 @@ export default function Cart() {
     mutate('http://localhost:8000/orderItems');
   };
 
-  
+
 
   return (
     <>
@@ -43,23 +43,22 @@ export default function Cart() {
         menu3={<HeaderLogin />}
         menu4={<HeaderLogout />}
       />
-        <h1>注文内容確認</h1>
-        <thead>
-                    <tr>
-                      <th>商品名</th>
-                      <th>サイズ・価格（税抜）・数量</th>
-                      <th>トッピング・価格（税抜）</th>
-                      <th>小計</th>
-                    </tr>
-                  </thead>
-                  
+      <h1>注文内容確認</h1>
+      <thead>
+        <tr>
+          <th>商品名</th>
+          <th>サイズ・価格（税抜）・数量</th>
+          <th>トッピング・価格（税抜）</th>
+          <th>小計</th>
+        </tr>
+      </thead>
+
       {data.map((orderItems: any) => {
         return (
           <>
             <div>
               <div>
                 <table>
-
                   <tbody>
                     <tr>
                       <td>
@@ -72,11 +71,11 @@ export default function Cart() {
                         <p>{`${orderItems.name}`}</p>
                       </td>
                       <td>
-                        <span>{`${orderItems.size}　${orderItems.price}円　${orderItems.quantity}個`}</span>
+                        <span>{`${orderItems.size} ${orderItems.price}円 ${orderItems.quantity}個`}</span>
                       </td>
                       <td>
                         <ul>
-                        {/* {data.orderItems.orderToppingList.map((topping:any) => {
+                          {/* {data.orderItems.orderToppingList.map((topping:any) => {
                           <>
                             <li>{`${topping}`}</li>
                           </>
@@ -100,9 +99,7 @@ export default function Cart() {
             </div>
           </>
         );
-      }
-      )
-      }
+      })}
       <div>消費税：？？？円</div>
       <div>`ご注文金額合計：${total}円（合計）`</div>
     </>
