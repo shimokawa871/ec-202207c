@@ -22,16 +22,16 @@ export default function Cart() {
     const { mutate } = useSWRConfig();
     if (error) return <div>failed to load</div>;
     if (!data) return <div>loading...</div>;
-    
+
     const onClickDelete = (id: number) => {
       fetch(`http://localhost:8000/orderItems/${id}`, {
         method: 'delete',
       });
       mutate('http://localhost:8000/orderItems');
     };
-    
+
     let total: any = 0;
-  
+
     let  onClickAdd = () =>{
       location.href = "https://www.google.com/?hl=ja";
     }
@@ -49,6 +49,7 @@ export default function Cart() {
       />
         <div className={styles.searchContents }>
         <h1></h1>
+        <table>
         <thead className={styles.th}>
                     <tr>
                       <th className={styles.th}>商品名</th>
@@ -57,13 +58,13 @@ export default function Cart() {
                       <th className={styles.th}>小計</th>
                     </tr>
                   </thead>
-                  
+
       {data.map((orderItems: any) => {
         return (
           <>
-            <div >
-              <div>
-                <table>
+            {/* <div > */}
+              {/* <div> */}
+                {/* <table> */}
                   <tbody>
                     <tr>
                       <td>
@@ -101,14 +102,15 @@ export default function Cart() {
                       </td>
                     </tr>
                   </tbody>
-                </table>
-              </div>
-            </div>
+                {/* </table> */}
+              {/* </div> */}
+            {/* </div> */}
           </>
         );
       }
       )
       }
+      </table>
       {/* {const price = {OrderItems.subTotal:any} */}
       {data.map((data: any) => {
           total += data.subTotal}
@@ -117,7 +119,7 @@ export default function Cart() {
       <div>{`消費税：${Math.floor(total * 1.08 - total)}円`}</div>
         <div>{`ご注文金額合計：${Math.floor(total * 1.08)}円（合計）`}</div>
       {/* } */}
-        <input 
+        <input
         value={"注文に進む"}
         className={styles.btn}
         type="submit"
