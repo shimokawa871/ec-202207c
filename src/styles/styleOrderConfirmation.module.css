@@ -41,7 +41,7 @@
   width: 55px;
   display: inline-block;
   text-align: center;
-  background: #340beb;
+  background: red;
   color: #fff;
   font-size: 15px;
 }
@@ -67,7 +67,7 @@
   padding-bottom: 15px;
 }
 
-.labelRadio{
+.labelRadio {
   margin-right: 50px;
 }
 
