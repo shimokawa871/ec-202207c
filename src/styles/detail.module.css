@@ -1,7 +1,3 @@
-/* input :hover{
-  cursor: pointer;
-} */
-
 .price {
   width: 200px;
   height: 200px;
@@ -16,6 +12,7 @@
 .textCenter {
   font-size: 30px;
 }
+
 
 .itemName {
   font-size: 25px;
@@ -42,6 +39,14 @@
   border: none;
   padding: 8px 15px;
 }
+
+.cartAddButton:hover {
+  background-color: white;
+  color: #ff6347;
+  outline: solid #ff6347;
+  cursor: pointer;
+}
+
 
 /* 合計金額の文字の大きさを変える */
 span.totalPrice {

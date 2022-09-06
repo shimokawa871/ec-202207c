@@ -35,6 +35,7 @@ export default function Detail({ item }: any) {
 
 function calc2(singlePrice: any) {
   setPrice(singlePrice)
+  console.log(price);
   setSize("L")
 }
 

@@ -6,6 +6,7 @@ import HeaderCart from 'components/HeaderCart';
 import HeaderOrder from 'components/HeaderOrder';
 import HeaderLogin from 'components/HeaderLogin';
 import HeaderLogout from 'components/HeaderLogout';
+import styles from '../styles/error.module.css';
 
 export default function ErrorPage(){
   const router = useRouter()
@@ -28,23 +29,14 @@ export default function ErrorPage(){
         menu4={<HeaderLogout />}
       />
   {/* <p>{router.asPath}</p> */}
-  <style jsx>{`
-    a {
-      text-decoration: underline;
-    }
-
-    .msg {
-      color: #ff6347;
-    }
-
-    
-
-  `}
-  </style>
-  <p className="msg">申し訳ございませんが、
+  <div className={styles.comContents}>
+  <p>申し訳ございませんが、
   ご指定の商品は現在お取り扱いをしておりません。</p>
 
-  <p>5秒後に<Link href="/items"><a>商品一覧</a></Link>へ戻ります。</p>
+  <p>5秒後に<span className={styles.msg}>商品一覧</span>へ戻ります。</p>
+
+  <Link href="/items"><a><button className={styles.topButton}>商品一覧へ戻る</button></a></Link>
+  </div>
   </>
   )
  }
