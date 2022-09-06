@@ -9,7 +9,7 @@ import Image from 'next/image';
 import styles from '../../components/cart.module.css';
 import Link from 'next/link';
 import OrderItems from 'components/orderItemList';
-
+import orderConfirmation from "../orderConfirmation"
 
 const fetcher = (resource: any, init: any) =>
 fetch(resource, init).then((res) => res.json());
@@ -33,7 +33,7 @@ export default function Cart() {
     let total: any = 0;
   
     let  onClickAdd = () =>{
-      location.href = "https://www.google.com/?hl=ja";
+      location.href = "http://localhost:3000/orderConfirmation";
     }
 
   return (

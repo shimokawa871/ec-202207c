@@ -1,7 +1,13 @@
-import styleOrder from '../styles/styleOrderConfirmation.module.css';
+import styleOrder from '../styles/form.module.css';
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Head from 'next/head';
+import Header from 'components/Header';
+import HeaderCart from 'components/HeaderCart';
+import HeaderOrder from 'components/HeaderOrder';
+import HeaderLogin from 'components/HeaderLogin';
+import HeaderLogout from 'components/HeaderLogout';
+
 
 //各フォームのデータ型cd
 // type FormData = {
@@ -77,6 +83,13 @@ const orderConfirmation = () => {
       <Head>
         <title>注文確認画面</title>
       </Head>
+      <Header
+        menu1={<HeaderCart />}
+        menu2={<HeaderOrder />}
+        menu3={<HeaderLogin />}
+        menu4={<HeaderLogout />}
+      />
+
 
       <form className={styleOrder.form}>
         <p className={styleOrder.labelTitle}>お届け先情報</p>
