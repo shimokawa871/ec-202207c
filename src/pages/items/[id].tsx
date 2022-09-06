@@ -29,15 +29,15 @@ export default function Detail({ item }: any) {
 
   // サイズを選んだ時に走る処理
   function calc(singlePrice: any) {
-    setPrice(singlePrice)
+    setPrice(priceL)
 
     // オプションと数量の計算をする関数を呼ぶ
-
-    if(singlePrice === priceM){
-    setSize("M")
+    // setSizeできていないみたい
+    if(price === priceL){
+    setSize("L")
     console.log(size);
   }else{
-    setSize("L")
+    setSize("M")
     console.log(size);
 
   }
@@ -194,7 +194,7 @@ export function OptionData(props: any): any {
   const optionList = props.optionList;
 
   // オプションにチェックを入れると処理が走る
-  function sizeJudge(name: string) {
+  function optionChange(name: string) {
     // チェックボックスにチェックが入っている数を数える
     // DOM操作しない方がいいらしいので他の方法を探す
     const checkCount = document.querySelectorAll(
@@ -217,7 +217,7 @@ export function OptionData(props: any): any {
               <input
                 type="checkbox"
                 value={d.name}
-                onChange={() => sizeJudge(d.name)}
+                onChange={() => optionChange(d.name)}
               />
               {d.name}
             </label>
