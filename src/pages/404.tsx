@@ -37,6 +37,8 @@ export default function ErrorPage(){
       color: #ff6347;
     }
 
+    
+
   `}
   </style>
   <p className="msg">申し訳ございませんが、

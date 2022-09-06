@@ -29,18 +29,13 @@ export default function Detail({ item }: any) {
 
   // サイズを選んだ時に走る処理
   function calc(singlePrice: any) {
-    setPrice(priceL)
-
-    // オプションと数量の計算をする関数を呼ぶ
-    // setSizeできていないみたい
-    if(price === priceL){
-    setSize("L")
-    console.log(size);
-  }else{
+    setPrice(singlePrice)
     setSize("M")
-    console.log(size);
+}
 
-  }
+function calc2(singlePrice: any) {
+  setPrice(singlePrice)
+  setSize("L")
 }
 
   return (
@@ -87,7 +82,7 @@ export default function Detail({ item }: any) {
             type="radio"
             name="sizeChoice"
             value={priceL}
-            onChange={(e: any) => calc(e.target.value)}
+            onChange={(e: any) => calc2(e.target.value)}
           />
           <span className={styles.price}>&nbsp;Ｌ</span>&nbsp;&nbsp;
           {priceL}円(税抜)
@@ -111,6 +106,8 @@ export default function Detail({ item }: any) {
           imagePath={imagePath}
           optionList={optionList}
         />
+        <div>{price}</div>
+        <div>{size}</div>
       </div>
     </>
   );
