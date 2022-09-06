@@ -242,7 +242,6 @@
       "priceM": 200,
       "priceL": 300
     }
-    
   ],
   "orders": [],
   "orderItems": [
@@ -301,6 +300,17 @@
       "optionPrice": 300,
       "subTotal": 1800,
       "id": 1
+    },
+    {
+      "name": "じゃがバターベーコン",
+      "imagePath": "/1.jpg",
+      "size": "M",
+      "price": 1490,
+      "quantity": 1,
+      "orderToppingList": [],
+      "optionPrice": 200,
+      "subTotal": 1490,
+      "id": 2
     }
   ],
   "orderOptions": []

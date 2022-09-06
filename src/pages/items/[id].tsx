@@ -12,7 +12,7 @@ import styles from '../../styles/detail.module.css';
 
 export default function Detail({ item }: any) {
 
-  // getStaticPripsでとってきたdb.json（items）のデータ
+  // getStaticPropsでとってきたdb.json（items）のデータ
   const id = item.id;
   const name = item.name;
   const priceM = item.priceM;
@@ -22,26 +22,31 @@ export default function Detail({ item }: any) {
 
   // MサイズかLサイズか
   const [price, setPrice] = useState(priceM);
-  const [size, setSize] = useState(true);
+  const [size, setSize] = useState("M");
 
   // 追加したオプションの種類を格納する箱
   const [optionList, setOptionList] = useState([]);
 
   // サイズを選んだ時に走る処理
-  function calc(b: any) {
-    setPrice(b);
+  function calc(singlePrice: any) {
+    setPrice(singlePrice)
 
-    // サイズの判定
-    // DOMは使わない方がいいらしいから違う方法探す
-    let elements = document.getElementsByName('sizeChoice');
-    // 0はMサイズ（true）1はLサイズ（false）
-    setSize(elements[0].checked);
+    // オプションと数量の計算をする関数を呼ぶ
+
+    if(singlePrice === priceM){
+    setSize("M")
+    console.log(size);
+  }else{
+    setSize("L")
+    console.log(size);
+
   }
+}
 
   return (
     <>
       <Head>
-        <title>らくらくピザ屋 - 商品詳細</title>
+        <title>{name} | 商品詳細</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -147,7 +152,7 @@ export function Option(props: any) {
 
   if (error) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;
-  // dataはdb.json（orderItems）の情報が入っている
+  // dataはdb.json（options）の情報が入っている
 
   //Mサイズ、Lサイズそれぞれの値段を取得
   // 要検討 
@@ -161,7 +166,7 @@ export function Option(props: any) {
   const optionList = props.optionList;
 
   // オプションの料金がどっちか
-  let optionPrice = size ? optionPriceM : optionPriceL;
+  let optionPrice = size === "M" ? optionPriceM : optionPriceL;
 
   return (
     <OptionData
@@ -301,12 +306,6 @@ export function AddCart({
   const add = (e: any) => {
     // e.preventDefault();
     console.log('カートに追加完了');
-
-    if (size) {
-      size = 'M';
-    } else {
-      size = 'L';
-    }
 
     // サーバへ送りたいデータ
     const output = {
