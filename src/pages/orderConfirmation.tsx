@@ -146,7 +146,6 @@ const orderConfirmation = () => {
         <title>注文確認画面</title>
       </Head>
 
-
       <div className={styleOrder.orderFormContainer}>
       <form>
         <h1 className={styleOrder.head}>お届け先情報</h1>
