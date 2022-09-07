@@ -3,11 +3,6 @@ import styleOrder from '../styles/form.module.css';
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Head from 'next/head';
-import Header from 'components/Header';
-import HeaderCart from 'components/HeaderCart';
-import HeaderOrder from 'components/HeaderOrder';
-import HeaderLogin from 'components/HeaderLogin';
-import HeaderLogout from 'components/HeaderLogout';
 
 //各フォームのデータ型cd
 // type FormData = {
@@ -150,108 +145,112 @@ const orderConfirmation = () => {
       <Head>
         <title>注文確認画面</title>
       </Head>
-      <Header
-        menu1={<HeaderCart />}
-        menu2={<HeaderOrder />}
-        menu3={<HeaderLogin />}
-        menu4={<HeaderLogout />}
-      />
 
-
-      <button type="button" onClick={() => onCLickData()}>
+      <div className={styleOrder.orderFormContainer}>
+      <form>
+        <h1 className={styleOrder.head}>お届け先情報</h1>
+        <hr />
+        <button
+      className={styleOrder.coBtn}
+      type="button"
+      onClick={() => onCLickData()}>
         ご登録住所にお届けする場合はこちら
       </button>
-      <p>新しいお届け先にお届けする場合は下記ご入力下さい。</p>
-
-      <form className={styleOrder.form}>
-        <p className={styleOrder.labelTitle}>お届け先情報</p>
-        <div className={styleOrder.formSample}>
-          <p className={styleOrder.formLabel}>
-            <span className={styleOrder.formRequire}>必須</span>氏名
-          </p>
+      <p className={styleOrder.pTitle}>新しいお届け先にお届けする場合は下記ご入力下さい。</p>
+        <div className={styleOrder.formField}>
+          <label className={styleOrder.formLabel}>
+            <span className={styleOrder.formRequire}>必須</span>
+            氏名
+            <small className={styleOrder.errorMsg}></small>
+          </label>
           <input
-            className={styleOrder.formInput}
+            //className={styleOrder.formInput}
             name="userName"
             type="text"
-            placeholder="(例)鈴木一郎"
+            placeholder="Name"
             value={userName}
             onChange={onChangeName}
           />
         </div>
-        <div className={styleOrder.formSample}>
-          <p className={styleOrder.formLabel}>
+        <div className={styleOrder.formField}>
+          <label className={styleOrder.formLabel}>
             <span className={styleOrder.formRequire}>必須</span>
             メールアドレス
-          </p>
+            <small className={styleOrder.errorMsg}></small>
+          </label>
           <input
-            className={styleOrder.formInput}
+            //className={styleOrder.formInput}
             name="email"
-            type="text"
-            placeholder="(例)○○○○.goomail.com"
+            type="email"
+            placeholder="Email"
             value={email}
             onChange={onChangeEmail}
           />
         </div>
-        <div className={styleOrder.formSample}>
-          <p className={styleOrder.formLabel}>
+        <div className={styleOrder.formField}>
+          <label className={styleOrder.formLabel}>
             <span className={styleOrder.formRequire}>必須</span>
             郵便番号
-          </p>
+            <small className={styleOrder.errorMsg}></small>
+            <button className={styleOrder.addressBtn}>住所検索</button>
+          </label>
           <input
-            className={styleOrder.formInput}
+            //className={styleOrder.formInput}
             name="zipCode"
             type="text"
-            placeholder="(注意)ハイフンなし"
+            placeholder="ZipCode"
             value={zipCode}
             onChange={onChangeZipCode}
           />
-          <br />
-          <button>住所検索</button>
         </div>
-        <div className={styleOrder.formSample}>
-          <p className={styleOrder.formLabel}>
-            <span className={styleOrder.formRequire}>必須</span>住所
-          </p>
+        <div className={styleOrder.formField}>
+          <label className={styleOrder.formLabel}>
+            <span className={styleOrder.formRequire}>必須</span>
+            住所
+            <small className={styleOrder.errorMsg}></small>
+          </label>
           <input
-            className={styleOrder.formInput}
+            //className={styleOrder.formInput}
             name="address"
             type="text"
-            placeholder="(例)○○県○○市"
+            placeholder="Address"
             value={address}
             onChange={onChangeAddress}
           />
         </div>
-        <div className={styleOrder.formSample}>
-          <p className={styleOrder.formLabel}>
+        <div className={styleOrder.formField}>
+          <label className={styleOrder.formLabel}>
             <span className={styleOrder.formRequire}>必須</span>
             電話番号
-          </p>
+            <small className={styleOrder.errorMsg}></small>
+          </label>
           <input
-            className={styleOrder.formInput}
+            //className={styleOrder.formInput}
             name="tel"
             type="text"
-            placeholder="(注意)ハイフンなし"
+            placeholder="Tel"
             value={tel}
             onChange={onChangeTel}
           />
         </div>
-        <div className={styleOrder.formSample}>
-          <p className={styleOrder.formLabel}>
+        <div className={styleOrder.formField}>
+          <label className={styleOrder.formLabel}>
             <span className={styleOrder.formRequire}>必須</span>
             配達日時
-          </p>
+            <small className={styleOrder.errorMsg}></small>
+          </label>
           <div>
             <p className={styleOrder.information}>
-              配達日時を入力してください
+              ご希望の配達日時を選択してください
             </p>
             <input
-              className={styleOrder.formInput}
+              className={styleOrder.dateForm}
               type="date"
               value={deliveryDate}
               onChange={onChangeDate}
             />
             <input
-              className={styleOrder.formInput}
+              className={styleOrder.timeForm}
               type="time"
               list="data-list"
               min="09:00"
@@ -295,11 +294,12 @@ const orderConfirmation = () => {
             </datalist>
           </div>
         </div>
-        <div className={styleOrder.formRadio}>
-          <p className={styleOrder.formLabel}>
+        <div className={styleOrder.formField}>
+          <label className={styleOrder.formLabel}>
             <span className={styleOrder.formRequire}>必須</span>
             お支払い方法
-          </p>
+            <small className={styleOrder.errorMsg}></small>
+          </label>
           <div className={styleOrder.radioLabel}>
             <label className={styleOrder.labelRadio}>
               <input
@@ -324,12 +324,13 @@ const orderConfirmation = () => {
         <Link href="/completion">
           <input
             type="submit"
-            className={styleOrder.formBtn}
+            className={styleOrder.orderBtn}
             value="送信する"
             onClick={() => onClickOrder()}
           />
         </Link>
       </form>
+      </div>
     </>
   );
 };

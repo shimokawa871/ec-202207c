@@ -81,7 +81,7 @@ export default function Search() {
       <div className={styles.searchResult}>
         {searchWord === '' ? ( //入力項目が空だったら
           <ItemList />
-        ) : searchData === data.name ? (
+        ) : data.find((a: any) => a !== searchWord) ? (
           <p>該当商品がありません</p>
         ) : (
           searchData.map((item: any) => {

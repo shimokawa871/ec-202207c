@@ -1,6 +1,12 @@
+
 .body {
-  background: rgb(2,0,36);
-background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(28,143,162,1) 35%, rgba(0,212,255,1) 100%);
+  background: rgb(2, 0, 36);
+  background: radial-gradient(
+    circle,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(28, 143, 162, 1) 35%,
+    rgba(0, 212, 255, 1) 100%
+  );
 }
 
 .head {
@@ -54,6 +60,7 @@ background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(28,143,162,1) 35%, r
 .formField label {
   font-size: 15px;
   font-weight: 600;
+  margin-top: 3px;
   margin-bottom: 3px;
 }
 
@@ -74,7 +81,7 @@ background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(28,143,162,1) 35%, r
   background-color: #175892;
 }
 
-.errorMsg{
+.errorMsg {
   color: red;
   margin: 0;
   align-self: flex-start;
@@ -82,3 +89,62 @@ background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(28,143,162,1) 35%, r
   padding-left: 10px;
 }
 
+.coBtn {
+  background-color: #1b66a7;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 4px 8px;
+}
+.coBtn:hover {
+  background-color: #175892;
+}
+.pTitle{
+  color: red;
+}
+.orderFormContainer{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.orderFormContainer form {
+  background-color: rgb(252, 241, 241);
+  width: 70%;
+  max-width: 450px;
+  padding: 30px;
+  border-radius: 10px;
+  border: 1px solid #dfdfdf;
+  box-shadow: 30px 43px 32px -34px;
+}
+
+.addressBtn{
+  width: 70px;
+}
+.information {
+  margin-top: 3px;
+  margin-bottom: 3px;
+  font-size: 13px;
+}
+.dateForm {
+  margin-right: 5px;
+  width: 200px;
+}
+.timeForm{
+  width: 150px;
+}
+.orderBtn{
+  background-color: #1b66a7;
+  width: 100%;
+  margin-top: 20px;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 30px;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.orderBtn:hover {
+  background-color: #175892;
+}
