@@ -22,19 +22,20 @@ export default function Detail({ item }: any) {
 
   // MサイズかLサイズか
   const [price, setPrice] = useState(priceM);
-  // const [size, setSize] = useState("M");
-  const [size, setSize] = useState(true);
+  const [size, setSize] = useState("M");
 
-
-  // 追加したオプションの種類を格納する箱
-  const [optionList, setOptionList] = useState([]);
 
   // サイズを選んだ時に走る処理
-  function calc(single: any) {
-    setPrice(single)
-    // setSize(single === priceM? "M": "L")
-    setSize(!size)
-    console.log(size);
+  function calcM(e :any) {
+    setPrice(e.target.value)
+    console.log(e.target.value);
+    setSize("M")
+  }
+
+  function calcL(e :any) {
+    setPrice(e.target.value)
+    console.log(e.target.value);
+    setSize("L")
   }
 
   return (
@@ -70,8 +71,8 @@ export default function Detail({ item }: any) {
             type="radio"
             name="sizeChoice"
             value={priceM}
-            onChange={(e: any) => calc(e.target.value)}
-            
+            onChange={calcM}
+            defaultChecked
           />
           <span className={styles.price}>&nbsp;М&nbsp;</span>
           &nbsp;&nbsp;{priceM}円(税抜)
@@ -81,7 +82,7 @@ export default function Detail({ item }: any) {
             type="radio"
             name="sizeChoice"
             value={priceL}
-            onChange={(e: any) => calc(e.target.value)}
+            onChange={calcL}
           />
           <span className={styles.price}>&nbsp;Ｌ</span>&nbsp;&nbsp;
           {priceL}円(税抜)
@@ -103,7 +104,6 @@ export default function Detail({ item }: any) {
           priceL={priceL}
           price={price}
           imagePath={imagePath}
-          optionList={optionList}
         />
         <div>{price}</div>
         <div>{size}</div>
@@ -159,7 +159,6 @@ export function Option(props: any) {
   const price = props.price;
   const name = props.name;
   const imagePath = props.imagePath;
-  const optionList = props.optionList;
 
   // オプションの料金がどっちか
   let optionPrice = size === "M" ? optionPriceM : optionPriceL;
@@ -172,7 +171,6 @@ export function Option(props: any) {
       optionPrice={optionPrice}
       data={data}
       imagePath={imagePath}
-      optionList={optionList}
     />
   );
 }
@@ -187,21 +185,23 @@ export function OptionData(props: any): any {
   const imagePath = props.imagePath;
   const size = props.size;
   const optionPrice = props.optionPrice;
-  const optionList = props.optionList;
+
+  // 追加したオプションの種類を格納する箱
+  const [optionList, setOptionList] = useState(Array())
 
   // オプションにチェックを入れると処理が走る
-  function optionChange(name: string) {
-    // チェックボックスにチェックが入っている数を数える
-    // DOM操作しない方がいいらしいので他の方法を探す
-    const checkCount = document.querySelectorAll(
-      'input[type="checkbox"]:checked'
-    ).length;
-    setSinglePrice(
-      checkCount * props.optionPrice + Number(props.price)
-    );
+  function optionChange(e: any) {
+    const checkCount = document.querySelectorAll('input[type="checkbox"]:checked').length;
 
-    // オプションを追加する
-    optionList.push(name)
+    if (optionList.includes(e.target.value)) {
+      setOptionList(optionList.filter(item => item !== e.target.value));
+
+    } else {
+      setOptionList([...optionList, e.target.value]);
+    }
+
+    // setSinglePrice((optionList.length +1) * props.optionPrice + Number(props.price));
+    setSinglePrice(checkCount * props.optionPrice + Number(props.price));
   }
 
   return (
@@ -213,7 +213,7 @@ export function OptionData(props: any): any {
               <input
                 type="checkbox"
                 value={d.name}
-                onChange={() => optionChange(d.name)}
+                onChange={optionChange}
               />
               {d.name}
             </label>
@@ -229,6 +229,7 @@ export function OptionData(props: any): any {
         optionPrice={optionPrice}
         optionList={optionList}
       />
+      <div>{optionList}</div>
     </div>
   );
 }
