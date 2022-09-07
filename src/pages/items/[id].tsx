@@ -11,6 +11,7 @@ import HeaderLogout from 'components/HeaderLogout';
 import styles from '../../styles/detail.module.css';
 
 export default function Detail({ item }: any) {
+
   // getStaticPropsでとってきたdb.json（items）のデータ
   const id = item.id;
   const name = item.name;
@@ -21,15 +22,19 @@ export default function Detail({ item }: any) {
 
   // MサイズかLサイズか
   const [price, setPrice] = useState(priceM);
+  // const [size, setSize] = useState("M");
   const [size, setSize] = useState(true);
+
 
   // 追加したオプションの種類を格納する箱
   const [optionList, setOptionList] = useState([]);
 
   // サイズを選んだ時に走る処理
   function calc(single: any) {
-    setSize(!size);
-    setPrice(single);
+    setPrice(single)
+    // setSize(single === priceM? "M": "L")
+    setSize(!size)
+    console.log(size);
   }
 
   return (
@@ -59,28 +64,28 @@ export default function Detail({ item }: any) {
       </p>
       <div className={styles.selectField}>
         <span className={styles.selectMenu}>サイズ</span>
-        <br />
-        <div onChange={(e: any) => calc(e.target.value)}>
-          <label>
-            <input
-              type="radio"
-              name="sizeChoice"
-              value={priceM}
-              defaultChecked
-            />
-            <span className={styles.price}>&nbsp;М&nbsp;</span>
-            &nbsp;&nbsp;{priceM}円(税抜)
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="sizeChoice"
-              value={priceL}
-            />
-            <span className={styles.price}>&nbsp;Ｌ</span>&nbsp;&nbsp;
-            {priceL}円(税抜)
-          </label>
-        </div>
+        <br/>
+        <label>
+          <input
+            type="radio"
+            name="sizeChoice"
+            value={priceM}
+            onChange={(e: any) => calc(e.target.value)}
+            
+          />
+          <span className={styles.price}>&nbsp;М&nbsp;</span>
+          &nbsp;&nbsp;{priceM}円(税抜)
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="sizeChoice"
+            value={priceL}
+            onChange={(e: any) => calc(e.target.value)}
+          />
+          <span className={styles.price}>&nbsp;Ｌ</span>&nbsp;&nbsp;
+          {priceL}円(税抜)
+        </label>
       </div>
 
       <div className={styles.selectField}>
@@ -146,7 +151,7 @@ export function Option(props: any) {
   // dataはdb.json（options）の情報が入っている
 
   //Mサイズ、Lサイズそれぞれの値段を取得
-  // 要検討
+  // 要検討 
   const optionPriceM = data[0].priceM;
   const optionPriceL = data[0].priceL;
 
@@ -157,7 +162,7 @@ export function Option(props: any) {
   const optionList = props.optionList;
 
   // オプションの料金がどっちか
-  let optionPrice = size === 'M' ? optionPriceM : optionPriceL;
+  let optionPrice = size === "M" ? optionPriceM : optionPriceL;
 
   return (
     <OptionData
@@ -173,6 +178,7 @@ export function Option(props: any) {
 }
 
 export function OptionData(props: any): any {
+
   // 1枚の値段（オプションなしで）
   const [singlePrice, setSinglePrice] = useState(props.price);
 
@@ -195,7 +201,7 @@ export function OptionData(props: any): any {
     );
 
     // オプションを追加する
-    optionList.push(name);
+    optionList.push(name)
   }
 
   return (
@@ -233,12 +239,9 @@ export function Total(props: any) {
 
   function totalCalc(num: number) {
     setItemCount(num);
-    setTotal(itemCount * props.singlePrice);
   }
 
-  // const [total,setTotal] = useState(itemCount * props.singlePrice);
-  const [total, setTotal] = useState(props.size ? 1111 : 2222);
-  //
+  const total = itemCount * props.singlePrice;
 
   return (
     <>
@@ -277,7 +280,7 @@ export function Total(props: any) {
         price={props.price}
         name={props.name}
         imagePath={props.imagePath}
-        MorL={props.size}
+        size={props.size}
         optionPrice={props.optionPrice}
         optionList={props.optionList}
       />
@@ -293,7 +296,7 @@ export function AddCart({
   imagePath,
   size,
   optionPrice,
-  optionList,
+  optionList
 }: any) {
   // カートに情報をプッシュする
   const add = (e: any) => {
