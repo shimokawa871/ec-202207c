@@ -1,0 +1,84 @@
+.body {
+  background: rgb(2,0,36);
+background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(28,143,162,1) 35%, rgba(0,212,255,1) 100%);
+}
+
+.head {
+  text-align: center;
+  font-size: 25px;
+  margin: 0px;
+}
+
+.formContainer {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.formContainer form {
+  background-color: rgb(252, 241, 241);
+  width: 70%;
+  max-width: 450px;
+  padding: 30px;
+  border-radius: 10px;
+  border: 1px solid #dfdfdf;
+  box-shadow: 30px 43px 32px -34px;
+}
+
+.uiForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 500px;
+}
+
+.formField {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.formField input {
+  border: 1px solid gray;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.formField input:focus {
+  outline: none;
+}
+
+.formField label {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 3px;
+}
+
+.submitButton {
+  background-color: #1b66a7;
+  width: 100%;
+  margin-top: 10px;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 30px;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.submitButton:hover {
+  background-color: #175892;
+}
+
+.errorMsg{
+  color: red;
+  margin: 0;
+  align-self: flex-start;
+  font-size: 10px;
+  padding-left: 10px;
+}
+
