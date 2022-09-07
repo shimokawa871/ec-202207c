@@ -150,7 +150,7 @@ export function Option(props: any) {
   // dataはdb.json（orderItems）の情報が入っている
 
   //Mサイズ、Lサイズそれぞれの値段を取得
-  // 要検討 
+  // 要検討
   const optionPriceM = data[0].priceM;
   const optionPriceL = data[0].priceL;
 
