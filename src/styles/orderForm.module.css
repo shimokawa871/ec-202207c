@@ -1,0 +1,138 @@
+.head {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0px;
+}
+
+.orderFormContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.orderFormContainer form {
+  width: 85%;
+  padding: 30px;
+  border-radius: 10px;
+  border: 1px solid #dfdfdf;
+  box-shadow: 30px 43px 32px -34px;
+  margin-top: 30px;
+}
+
+.orderFormField {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.orderFormField input {
+  border: 1px solid gray;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.formInput {
+  width: 600px;
+}
+
+.orderFormField input:focus {
+  outline: none;
+}
+
+.orderFormField label {
+  font-size: 15px;
+  font-weight: 600;
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+
+.formLabel {
+  padding: 10px 0;
+  font-size: 15px;
+}
+
+.hr {
+  border-style: dashed;
+  border-color: #f0e68c;
+}
+
+.coBtn {
+  background-color: #1b66a7;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 4px 8px;
+  margin-top: 20px;
+}
+
+.coBtn:hover {
+  background-color: #175892;
+}
+
+.pTitle {
+  color: red;
+  margin-bottom: 40px;
+}
+
+.addressBtn {
+  width: 70px;
+  font-size: 12px;
+  margin-left: 10px;
+}
+
+.dateInformation {
+  margin-top: 3px;
+  margin-bottom: 3px;
+  font-size: 13px;
+  color: red;
+}
+
+.dateForm {
+  margin-right: 5px;
+  width: 300px;
+}
+
+.timeForm {
+  width: 250px;
+  margin-right: 25px;
+  margin-left: 20px;
+}
+
+.radioLabel {
+  margin-right: 200px;
+  padding: 10px 0;
+}
+
+.labelRadio {
+  margin-right: 90px;
+}
+
+.orderBtn {
+  background-color: #ff6347;
+  width: 50%;
+  margin-top: 20px;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 30px;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.orderBtn:hover {
+  background-color: white;
+  color: #ff6347;
+  outline: solid #ff6347;
+}
+
+.errorMsg {
+  color: red;
+  margin: 0;
+  align-self: flex-start;
+  font-size: 10px;
+  padding-left: 10px;
+}

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './search.module.css';
 import itemListStyles from './itemList.module.css';
 import useSWR from 'swr';
@@ -29,7 +29,7 @@ export default function Search() {
   const onSearch = () => {
     setSearchData(
       data.filter((event: any) => {
-        return event.name.indexOf(searchWord) >= 0; //data配列の中からsearchWordが0以上のものを検索してフィルターにかける
+        return event.name.indexOf(searchWord) >= 0; //data配列の中からsearchWordを検索してフィルターにかける
       })
     );
   };
@@ -49,11 +49,12 @@ export default function Search() {
       >
         <p className={styles.search}>商品を検索する</p>
         <div className={styles.itemTitle}>
-          商品名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          {/* 商品名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */}
           <input
             type="text"
             id="name"
             name="name"
+            placeholder="キーワードを入力"
             value={searchWord}
             onChange={searchOnInput}
             className={styles.searchForm}
@@ -79,10 +80,8 @@ export default function Search() {
       </form>
 
       <div className={styles.searchResult}>
-        {searchWord === '' ? ( //入力項目が空だったら
+        {searchWord.length <= 0 ? (
           <ItemList />
-        ) : data.find((a: any) => a !== searchWord) ? (
-          <p>該当商品がありません</p>
         ) : (
           searchData.map((item: any) => {
             return (
