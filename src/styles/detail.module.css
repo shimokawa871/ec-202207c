@@ -2,19 +2,23 @@
   width: 200px;
   height: 200px;
   /* 背景色 */
-  background-color: #ff4500;
+  background-color: #ff6347;
   /* 角を丸くする */
   border-radius: 10%;
   -webkit-border-radius: 10%;
   -moz-border-radius: 10%;
+  color: white;
+  /* font-weight: bold; */
+  padding: 1px;
+  box-sizing: border-box;
 }
 
 .imagePicture {
   display: inline-block;
   text-align: center;
-  border: #f0e68c solid 5px;
-  width: 310px;
-  height: 210px;
+  border: #ff6347 solid 3px;
+  width: 306px;
+  height: 206px;
 }
 
 
@@ -28,10 +32,15 @@
 
 .container {
   margin: 20px;
-  width: 37%;
+  width: 50%;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
+  border-radius: 5%;
+  border-style: dashed;
+  border-color: #f0e68c;
+  border-width: 3px;
+  padding: 30px 100px;
 }
 
 .itemName {
@@ -49,6 +58,12 @@
 
 .selectMenu {
   font-weight: bold;
+}
+
+.options {
+  display: inline-block;
+  text-align: center;
+  width: 88%;
 }
 
 .selectBox {

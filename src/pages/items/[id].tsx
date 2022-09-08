@@ -111,8 +111,8 @@ export default function Detail({ item }: any) {
             price={price}
             imagePath={imagePath}
           />
-          <div>{price}</div>
-          <div>{size}</div>
+          {/* <div>{price}</div>
+          <div>{size}</div> */}
         </div>
       </div>
     </>
@@ -217,6 +217,7 @@ export function OptionData(props: any): any {
 
   return (
     <div>
+      <div className={styles.options}>
       <div className={styles.selectField}>
         {props.data.map((d: any) => {
           return (
@@ -231,6 +232,7 @@ export function OptionData(props: any): any {
           );
         })}
       </div>
+      </div>
       <Total
         singlePrice={singlePrice}
         price={price}
@@ -240,7 +242,7 @@ export function OptionData(props: any): any {
         optionPrice={optionPrice}
         optionList={optionList}
       />
-      <div>{optionList}</div>
+      {/* <div>{optionList}</div> */}
     </div>
   );
 }
@@ -275,6 +277,9 @@ export function Total(props: any) {
             <option value="3">3</option>
             <option value="4">4</option>
             <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
           </select>
         </label>
       </div>
