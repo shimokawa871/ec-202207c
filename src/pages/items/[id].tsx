@@ -83,7 +83,7 @@ export default function Detail({ item }: any) {
               defaultChecked
             />
             <span className={styles.price}>&nbsp;М&nbsp;</span>
-            &nbsp;&nbsp;{priceM}円(税抜)
+            &nbsp;&nbsp;{priceM.toLocaleString()}円(税抜)
           </label>
           <label>
             <input
@@ -93,7 +93,7 @@ export default function Detail({ item }: any) {
               onChange={calcL}
             />
             <span className={styles.price}>&nbsp;Ｌ</span>&nbsp;&nbsp;
-            {priceL}円(税抜)
+            {priceL.toLocaleString()}円(税抜)
           </label>
         </div>
 
@@ -288,7 +288,7 @@ export function Total(props: any) {
 
       <div>
         <span className={styles.totalPrice}>
-          合計金額：<span>{total}</span>
+          合計金額：<span>{total.toLocaleString()}</span>
           円(税抜)
         </span>
       </div>
