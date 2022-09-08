@@ -12,12 +12,14 @@ export const fetcher = (resource: any, init: any) =>
 export default function Search() {
   const { data, error } = useSWR('/api/items', fetcher);
 
+  //formの入力される値の書き換え用
   const [searchWord, setSearchWord] = useState('');
   //form内の値が変更された時に発火するメソッド(stateの値をformに記述された値に変換)
   const searchOnInput = (event: any) => {
     setSearchWord(event.target.value);
   };
 
+  //formで検索された値を保存する用
   const [searchData, setSearchData] = useState([]);
 
   if (error) return <div>failed to load</div>;
@@ -27,7 +29,7 @@ export default function Search() {
   const onSearch = () => {
     setSearchData(
       data.filter((event: any) => {
-        return event.name.indexOf(searchWord) >= 0;
+        return event.name.indexOf(searchWord) >= 0; //data配列の中からsearchWordが0以上のものを検索してフィルターにかける
       })
     );
   };
@@ -36,7 +38,7 @@ export default function Search() {
   const onClickClear = () => {
     setSearchWord('');
     setSearchData([]);
-  }
+  };
 
   return (
     <>
@@ -68,16 +70,19 @@ export default function Search() {
         </button>
         &nbsp;&nbsp;
         <button
-        type="reset"
-        onClick={()=>onClickClear()}
-        className={styles.clearButton}>
+          type="reset"
+          onClick={() => onClickClear()}
+          className={styles.clearButton}
+        >
           クリア
         </button>
       </form>
 
       <div className={styles.searchResult}>
-        {searchWord.length <= 0 ? (
+        {searchWord === '' ? ( //入力項目が空だったら
           <ItemList />
+        ) : data.find((a: any) => a !== searchWord) ? (
+          <p>該当商品がありません</p>
         ) : (
           searchData.map((item: any) => {
             return (
