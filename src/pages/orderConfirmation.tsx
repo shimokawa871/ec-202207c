@@ -2,11 +2,11 @@ import styleOrder from '../styles/form.module.css';
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Head from 'next/head';
-import Header from 'components/Header';
-import HeaderCart from 'components/HeaderCart';
-import HeaderOrder from 'components/HeaderOrder';
-import HeaderLogin from 'components/HeaderLogin';
-import HeaderLogout from 'components/HeaderLogout';
+import Header from '../components/Header';
+import HeaderCart from '../components/HeaderCart';
+import HeaderOrder from '../components/HeaderOrder';
+import HeaderLogin from '../components/HeaderLogin';
+import HeaderLogout from '../components/HeaderLogout';
 
 
 //各フォームのデータ型cd

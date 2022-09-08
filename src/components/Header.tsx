@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from './header.module.css';
+import React from 'react';
 
 export default function Header(props: any) {
   return (
@@ -17,6 +18,7 @@ export default function Header(props: any) {
       </h1>
       <nav className={styles.headerMenu}>
         <ul className={styles.menu}>
+          <li className={styles.menuList}>{props.menu5}</li>
           <li className={styles.menuList}>{props.menu1}</li>
           <li className={styles.menuList}>{props.menu2}</li>
           <li className={styles.menuList}>{props.menu3}</li>

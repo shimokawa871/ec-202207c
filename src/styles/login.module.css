@@ -1,0 +1,117 @@
+/* .all {
+  box-sizing: border-box;
+} */
+.body {
+  margin: 0;
+  padding: 0;
+  /* background-color: aliceblue; */
+  font-size: 16px;
+  color: #fff;
+  font-weight: 300;
+}
+
+.loginBox {
+  position: relative;
+  margin: 5% auto;
+  width: 650px;
+  height: 400px;
+  box-shadow: o 2px 4px #4b4b4b;
+}
+.leftBox{
+  background-color: #fffacd;
+  position: absolute;
+  left: 0;
+  padding: 40px;
+  width: 350px;
+  height: 400px;
+}
+.h1{
+  color: #ff6347;
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-weight: 600;
+  font-size: 40px;
+}
+.form3{
+  margin-bottom: 30px;
+  padding: 4px;
+  width: 220px;
+  height: 40px;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #aaa;
+  font-weight: 400;
+  font-size: 15px;
+  transition: all 0.3s;
+}
+.submit{
+  margin-bottom: 28px;
+  width: 120px;
+  height: 32px;
+  background-color: #bd8c47;
+  border-radius: 2px;
+  border: none;
+  color: white;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.small{
+  color: rgb(84, 84, 219);
+  text-decoration: underline;
+  cursor: pointer;
+}
+.submit:hover{
+  background-color: #a77939;
+}
+.rightBox{
+  /* background-color: green; */
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 40px;
+  width: 300px;
+  height: 400px;
+  background-image: url("login.jpg");
+  background-size: cover;
+  background-position: center;
+}
+.rightBox,
+.loginWithSns{
+  display: block;
+  margin-bottom: 40px;
+  font-size: 28px;
+  color: white;
+  font-weight: 600;
+  text-align: center;
+  text-shadow: 0 2px 4px #4b4b4b;
+}
+.snsFacebook,
+.snsGoogle,
+.snsTwitter{
+  margin-bottom: 20px;
+  width: 220px;
+  height: 36px;
+  border: none;
+  border-radius: 2px;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+}
+.errorMsg{
+  color: red;
+  /* margin: 0;
+  align-self: flex-start; */
+  font-size: 12px;
+  display: block;
+  /* padding-left: 10px; */
+}
+.snsFacebook{
+  background-color: #32508e;
+}
+.snsGoogle{
+  background-color: #dd4b39;
+}
+
+.snsTwitter{
+  background-color: #55acee;
+}

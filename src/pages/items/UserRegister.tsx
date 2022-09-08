@@ -11,10 +11,11 @@ import { ChangeEvent } from 'jest-haste-map';
 import Link from 'next/link';
 import styleForm from 'styles/form.module.css';
 import Header from '../../components/Header';
-import HeaderCart from 'components/HeaderCart';
-import HeaderOrder from 'components/HeaderOrder';
-import HeaderLogin from 'components/HeaderLogin';
-import HeaderLogout from 'components/HeaderLogout';
+import HeaderCart from '../../components/HeaderCart';
+import HeaderOrder from '../../components/HeaderOrder';
+import HeaderLogin from '../../components/HeaderLogin';
+import HeaderLogout from '../../components/HeaderLogout';
+import HeaderLoginUserName from '../../components/HeaderLoginUserName';
 
 //各フォームのデータ型cd
 type formValues = {
@@ -27,7 +28,7 @@ type formValues = {
   Cpassword: string;
   id: number;
 };
-
+//inputの値の初期値
 const UserRegister = () => {
   const initialValues = {
     userName: '',
@@ -39,43 +40,50 @@ const UserRegister = () => {
     Cpassword: '',
     id: '',
   };
+  //フォームの入力値をステートで管理
   const [formValues, setFormValues] = useState(initialValues);
+  //エラー文をステートで管理formErrorsはオブジェクト
   const [formErrors, setFormErrors] = useState({} as any);
-
+  //フォームの入力値を反映
   const handleChange = (e: any) => {
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
   };
 
+  //登録ボタン
   const handleSubmit = (e: any) => {
     //フォームを送信しないようにする
     e.preventDefault();
-    //バリデーションチェックをする。
-    setFormErrors(validate(formValues));
-    const errNum = Object.keys(formErrors).length;
-    if (errNum !== 0) {
-      e.preventDefault();
-      console.log(errNum);
-    } else {
+    //バリデーションチェックの結果を別変数に代入
+    const validateResult = validate(formValues)
+    let errNum = Object.keys(validateResult).length;
+    if(errNum >= 1) {
+      setFormErrors(validateResult);
+    } else if (errNum === 0) {
       //ログイン情報を送信する。
-      return fetch('/api/users', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: formValues.userName,
-          mail: formValues.email,
-          zipcode: formValues.zipcode,
-          address: formValues.address,
-          tel: formValues.tel,
-          password: formValues.password,
-          Cpassword: formValues.Cpassword,
-        }),
-      });
-    }
+          fetch('/api/users', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: formValues.userName,
+            mail: formValues.email,
+            zipcode: formValues.zipcode,
+            address: formValues.address,
+            tel: formValues.tel,
+            password: formValues.password,
+            Cpassword: formValues.Cpassword,
+          }),
+        });
+        alert("ユーザ登録が完了しました！")
+        window.location.href = 'http://localhost:3000/login';
+      }
   };
 
+  //バリデーションチェック
   const validate = (values: any) => {
+    //エラー文を格納する空のオブジェクトを生成
     const errors = {} as any;
+    //メールアドレスの正規表現
     const regex =
       /^[a-zA-Z0-9_.+-]+@([a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]*\.)+[a-zA-Z]{2,}$/;
     if (!values.userName) {
@@ -117,6 +125,7 @@ const UserRegister = () => {
         menu2={<HeaderOrder />}
         menu3={<HeaderLogin />}
         menu4={<HeaderLogout />}
+        menu5={<HeaderLoginUserName />}
       />
       <div className={styleForm.formContainer}>
         <form>
@@ -223,7 +232,7 @@ const UserRegister = () => {
             </div>
             <button
               className={styleForm.submitButton}
-              onClick={handleSubmit}
+              onClick={(e) => handleSubmit(e)}
             >
               登録
             </button>

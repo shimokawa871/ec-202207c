@@ -4,6 +4,7 @@ background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(28,143,162,1) 35%, r
 }
 
 .head {
+  color:  #ff6347;
   text-align: center;
   font-size: 25px;
   margin: 0px;
@@ -18,7 +19,7 @@ background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(28,143,162,1) 35%, r
 }
 
 .formContainer form {
-  background-color: rgb(252, 241, 241);
+  background-color: #fffacd;
   width: 70%;
   max-width: 450px;
   padding: 30px;
@@ -58,7 +59,7 @@ background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(28,143,162,1) 35%, r
 }
 
 .submitButton {
-  background-color: #1b66a7;
+  background-color: #ff6347;
   width: 100%;
   margin-top: 10px;
   border: none;
@@ -68,10 +69,12 @@ background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(28,143,162,1) 35%, r
   font-size: 15px;
   cursor: pointer;
   transition: all 0.2s;
+  font-weight: 500;
 }
 
 .submitButton:hover {
-  background-color: #175892;
+  background-color: white;
+  color: #ff6347;
 }
 
 .errorMsg{
