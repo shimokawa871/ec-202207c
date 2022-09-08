@@ -12,13 +12,19 @@
   gap: 3%;
   padding-left: 0;
   min-width: 600px;
+  justify-content: flex-end;
+  margin-right: 20px;
 }
 .menuList {
   white-space: nowrap;
   color: #ff6347;
-  display: flex;
-  justify-content: flex-end;
+  /* display: flex;
+  justify-content: flex-end; */
 }
 .menuList:hover {
   color: #228b22;
+}
+.LgMenuList {
+  white-space: nowrap;
+  color: #ff6347;
 }

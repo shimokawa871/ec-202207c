@@ -36,12 +36,12 @@ export default function ItemList() {
                     <span className={styles.sizeM}>
                       &nbsp;M&nbsp;
                     </span>
-                    &nbsp;{item.priceM}円(税抜)
+                    &nbsp;{item.priceM.toLocaleString()}円(税抜)
                     <br />
                     <span className={styles.sizeL}>
                       &nbsp;L&nbsp;
                     </span>
-                    &nbsp;{item.priceL}円(税抜)
+                    &nbsp;{item.priceL.toLocaleString()}円(税抜)
                   </div>
                 </a>
               </Link>

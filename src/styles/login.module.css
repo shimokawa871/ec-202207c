@@ -15,7 +15,7 @@
   margin: 5% auto;
   width: 650px;
   height: 400px;
-  box-shadow: o 2px 4px #4b4b4b;
+  /* box-shadow: o 2px 4px #4b4b4b; */
 }
 .leftBox{
   background-color: #fffacd;
