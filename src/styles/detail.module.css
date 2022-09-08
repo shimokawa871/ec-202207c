@@ -9,13 +9,38 @@
   -moz-border-radius: 10%;
 }
 
-.textCenter {
-  font-size: 30px;
+.imagePicture {
+  display: inline-block;
+  text-align: center;
+  border: #f0e68c solid 5px;
+  width: 310px;
+  height: 210px;
 }
 
 
-.itemName {
+.itemImgCenter {
+  padding-bottom: 50px;
+}
+
+.textCenter {
   font-size: 25px;
+}
+
+.container {
+  margin: 20px;
+  width: 37%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.itemName {
+  font-size: 20px;
+}
+
+.mainDes {
+  overflow-wrap: normal;
+  width: 300px;  
 }
 
 .selectField {
@@ -32,6 +57,7 @@
 }
 
 .cartAddButton {
+  font-size: 25px;
   background-color: #ff6347;
   color: white;
   font-weight: bold;
@@ -51,10 +77,6 @@
 /* 合計金額の文字の大きさを変える */
 span.totalPrice {
   font-size: 30px;
-}
-
-/* 中央寄せにする*/
-.itemImgCenter {
-  margin-left: auto;
-  margin-right: auto;
+  display: inline-block;
+  margin-bottom: 30px;
 }
