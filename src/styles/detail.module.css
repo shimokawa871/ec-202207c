@@ -1,24 +1,55 @@
-/* input :hover{
-  cursor: pointer;
-} */
-
 .price {
   width: 200px;
   height: 200px;
   /* 背景色 */
-  background-color: #ff4500;
+  background-color: #ff6347;
   /* 角を丸くする */
   border-radius: 10%;
   -webkit-border-radius: 10%;
   -moz-border-radius: 10%;
+  color: white;
+  /* font-weight: bold; */
+  padding: 1px;
+  box-sizing: border-box;
+}
+
+.imagePicture {
+  display: inline-block;
+  text-align: center;
+  border: #ff6347 solid 3px;
+  width: 306px;
+  height: 206px;
+}
+
+
+.itemImgCenter {
+  padding-bottom: 50px;
 }
 
 .textCenter {
-  font-size: 30px;
+  font-size: 25px;
+}
+
+.container {
+  margin: 20px;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  border-radius: 5%;
+  border-style: dashed;
+  border-color: #f0e68c;
+  border-width: 3px;
+  padding: 30px 100px;
 }
 
 .itemName {
-  font-size: 25px;
+  font-size: 20px;
+}
+
+.mainDes {
+  overflow-wrap: normal;
+  width: 300px;  
 }
 
 .selectField {
@@ -29,12 +60,19 @@
   font-weight: bold;
 }
 
+.options {
+  display: inline-block;
+  text-align: center;
+  width: 88%;
+}
+
 .selectBox {
   width: 80px;
   font-size: 20px;
 }
 
 .cartAddButton {
+  font-size: 25px;
   background-color: #ff6347;
   color: white;
   font-weight: bold;
@@ -43,13 +81,17 @@
   padding: 8px 15px;
 }
 
+.cartAddButton:hover {
+  background-color: white;
+  color: #ff6347;
+  outline: solid #ff6347;
+  cursor: pointer;
+}
+
+
 /* 合計金額の文字の大きさを変える */
 span.totalPrice {
   font-size: 30px;
-}
-
-/* 中央寄せにする*/
-.itemImgCenter {
-  margin-left: auto;
-  margin-right: auto;
+  display: inline-block;
+  margin-bottom: 30px;
 }

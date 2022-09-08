@@ -1,23 +1,23 @@
 /* cartのやつ */
-.searchContents {
+.all {
   text-align: center;
-  width: 80%;
-  padding: 5%;
-  margin: 1% auto 3% auto;
+  width: 85%;
+  padding: 4%;
+  margin: 1% auto 1% auto;
   border-radius: 5%;
   border-style: dashed;
   border-color: #f0e68c;
   border-width: 3px;
 }
-/*
-.th{
-  font-size: 20px;
-  margin: 0 90px 0 0px;
+
+.th {
+  font-size: 15px;
+  padding: 1%;
   table-layout: auto;
   width: auto;
-} */
+}
 
-.btn{
+.btn {
   text-align: center;
   font-size: large;
   background-color: #ff6347;
@@ -25,8 +25,97 @@
   border-radius: 50%;
   line-height: 3;
   color: white;
-  font-size: 12px;
+  font-size: 15px;
   font-weight: bold;
   margin-top: 20px;
-  padding: 0 30px;
+  padding: 5px 50px;
+}
+.btn:hover {
+  background-color: white;
+  color: #ff6347;
+  outline: solid #ff6347;
+}
+
+.table {
+  width: 85%;
+  margin: auto;
+  border-collapse: collapse;
+}
+
+.tr {
+  border-width: 1px 0;
+  border-style: solid;
+  border-color: #f0e68c;
+  border-style: dashed;
+  margin: 10%;
+}
+
+.size {
+  background-color: #ff6347;
+  padding: 5px;
+  border: solid #ff6347;
+  border-radius: 20%;
+  line-height: 1.9;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  margin-right: 10%;
+}
+
+.p {
+  margin-right: 10%;
+}
+
+/* .td{
+  margin: 50%;
+} */
+.list {
+  /* text-align:right; */
+  list-style: none;
+}
+
+.topping {
+  /* display: block; */
+  /* display: flex; */
+  float: left;
+}
+.opp {
+  /* text-align: right; */
+  /* display: block; */
+  display: flex;
+  /* float: right; */
+  /* margin-right: 15%; */
+}
+
+.sp {
+  margin-top: 100%;
+}
+/* .tr {
+    border-color: gray;
+    border-style: solid;
+    border-width: 1px 0;
+} */
+
+/* .subtotal{
+  margin: 10%;
+} */
+
+.total{
+  margin: 40px 0;
+  font-size: 25px;
+}
+.clear {
+  background-color: lightgray;
+  color: white;
+  font-weight: bold;
+  border-radius: 10%;
+  border: none;
+  padding: 3px;
+  margin-left: 20px;
+  width: 50px;
+}
+.clear:hover {
+  background-color: white;
+  color: #a9a9a9;
+  outline: solid lightgray;
 }
