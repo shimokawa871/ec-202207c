@@ -7,6 +7,7 @@ import HeaderOrder from 'components/HeaderOrder';
 import HeaderLogin from 'components/HeaderLogin';
 import HeaderLogout from 'components/HeaderLogout';
 import styles from '../styles/error.module.css';
+import HeaderLoginUserName from '../../components/HeaderLoginUserName';
 
 export default function ErrorPage(){
   const router = useRouter()
@@ -27,6 +28,7 @@ export default function ErrorPage(){
         menu2={<HeaderOrder />}
         menu3={<HeaderLogin />}
         menu4={<HeaderLogout />}
+        menu5={<HeaderLoginUserName />}
       />
   {/* <p>{router.asPath}</p> */}
   <div className={styles.comContents}>
