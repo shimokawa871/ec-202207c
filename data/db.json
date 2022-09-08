@@ -286,54 +286,6 @@
       "optionPrice": 300,
       "subTotal": 6560,
       "id": 3
-    },
-    {
-      "name": "アスパラ・ミート",
-      "imagePath": "/2.jpg",
-      "size": "L",
-      "price": "2570",
-      "quantity": "1",
-      "orderToppingList": [
-        "グリルナス"
-      ],
-      "optionPrice": 300,
-      "subTotal": 2870,
-      "id": 4
-    },
-    {
-      "name": "カレーじゃがバター",
-      "imagePath": "/4.jpg",
-      "size": "M",
-      "price": 1900,
-      "quantity": "2",
-      "orderToppingList": [],
-      "optionPrice": 200,
-      "subTotal": 3800,
-      "id": 5
-    },
-    {
-      "name": "じゃがバターベーコン",
-      "imagePath": "/1.jpg",
-      "size": "L",
-      "price": "2570",
-      "quantity": "2",
-      "orderToppingList": [
-        "ロースハム"
-      ],
-      "optionPrice": 300,
-      "subTotal": 5740,
-      "id": 6
-    },
-    {
-      "name": "ピザベスト4",
-      "imagePath": "/7.jpg",
-      "size": "M",
-      "price": 2570,
-      "quantity": 1,
-      "orderToppingList": [],
-      "optionPrice": 200,
-      "subTotal": 2570,
-      "id": 7
     }
   ],
   "orderOptions": []

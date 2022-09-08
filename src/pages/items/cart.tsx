@@ -11,6 +11,7 @@ import Link from 'next/link';
 import OrderItems from 'components/orderItemList';
 import OrderConfirmation from '../orderConfirmation';
 import React, { useState, useEffect } from 'react';
+import HeaderLoginUserName from 'components/HeaderLoginUserName';
 
 const fetcher = (resource: any, init: any) =>
   fetch(resource, init).then((res) => res.json());
@@ -28,9 +29,9 @@ export default function Cart() {
   const returnTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth'
-    })
-  }
+      behavior: 'smooth',
+    });
+  };
   let oder = () => {
     setTestFlag(!testFlag);
     setHone(!hone);
@@ -50,19 +51,19 @@ export default function Cart() {
     mutate('http://localhost:8000/orderItems');
   };
 
-//   const onClickDeleteT = (orderToppingList: string) => {
-//     {data.map((aaaaa: any) => 
-//       {aaaaa.map((orderToppingList: any) => {
-//     fetch(`http://localhost:8000/orderItems/${[orderToppingList}`, {
-//       method: 'delete',
-//     });
-//     mutate('http://localhost:8000/orderItems');
-//   }
-//     )
-// }
-//     )
-// }
-//   }
+  //   const onClickDeleteT = (orderToppingList: string) => {
+  //     {data.map((aaaaa: any) =>
+  //       {aaaaa.map((orderToppingList: any) => {
+  //     fetch(`http://localhost:8000/orderItems/${[orderToppingList}`, {
+  //       method: 'delete',
+  //     });
+  //     mutate('http://localhost:8000/orderItems');
+  //   }
+  //     )
+  // }
+  //     )
+  // }
+  //   }
 
   let total: any = 0;
 
@@ -72,6 +73,7 @@ export default function Cart() {
         <title>{hone ? 'ショッピングカート' : '注文詳細画面'}</title>
       </Head>
       <Header
+        menu5={<HeaderLoginUserName />}
         menu1={<HeaderCart />}
         menu2={<HeaderOrder />}
         menu3={<HeaderLogin />}
@@ -130,9 +132,8 @@ export default function Cart() {
                                 return (
                                   <>
                                     <li className={styles.list}>
-                                      <div>
-                                        </div>
-                                        <span
+                                      <div></div>
+                                      <span
                                         className={styles.topping}
                                       >{`${topping}`}</span>
                                       <span className={styles.opp}>
@@ -143,8 +144,7 @@ export default function Cart() {
                                   </>
                                 );
                               }
-                            )
-                            }
+                            )}
                           </ul>
                         </td>
                         <td className={styles.subtotal}>

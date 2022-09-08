@@ -6,8 +6,12 @@ background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(28,143,162,1) 35%, r
 .head {
   color:  #ff6347;
   text-align: center;
-  font-size: 25px;
+  font-size: 28px;
   margin: 0px;
+}
+
+.hr{
+  border:2px dashed #f0e68c;
 }
 
 .formContainer {
@@ -21,11 +25,12 @@ background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(28,143,162,1) 35%, r
 .formContainer form {
   background-color: #fffacd;
   width: 70%;
-  max-width: 450px;
-  padding: 30px;
-  border-radius: 10px;
-  border: 1px solid #dfdfdf;
-  box-shadow: 30px 43px 32px -34px;
+  max-width: 550px;
+  padding: 45px;
+  /* border-radius: 10px; */
+  /* border: 1px solid #dfdfdf; */
+  /* border: 5px dashed #f0e68c; */
+  /* box-shadow: 30px 43px 32px -34px; */
 }
 
 .uiForm {
@@ -43,9 +48,20 @@ background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(28,143,162,1) 35%, r
 }
 
 .formField input {
-  border: 1px solid gray;
+  /* border: 1px solid gray; */
   padding: 10px;
-  border-radius: 4px;
+  /* border-radius: 4px; */
+
+  /* margin-bottom: 30px; */
+  /* padding: 4px; */
+  /* width: 220px; */
+  /* height: 40px; */
+  border: none;
+  /* outline: none; */
+  border-bottom: 1px solid #aaa;
+  font-weight: 400;
+  font-size: 15px;
+  transition: all 0.3s;
 }
 
 .formField input:focus {
@@ -60,13 +76,14 @@ background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(28,143,162,1) 35%, r
 
 .submitButton {
   background-color: #ff6347;
-  width: 100%;
-  margin-top: 10px;
+  width: 80%;
+  margin-top: 30px;
   border: none;
   border-radius: 5px;
   padding: 10px 30px;
   color: white;
-  font-size: 15px;
+  font-size: 18px;
+  font-weight: bold;
   cursor: pointer;
   transition: all 0.2s;
   font-weight: 500;

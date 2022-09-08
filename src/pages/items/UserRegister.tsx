@@ -130,102 +130,102 @@ const UserRegister = () => {
       <div className={styleForm.formContainer}>
         <form>
           <h1 className={styleForm.head}>ユーザ登録</h1>
-          <hr />
+          <hr className={styleForm.hr}/>
           <div className={styleForm.uiForm}>
             <div className={styleForm.formField}>
               <label>
-                ユーザ名
+                {/* 名前 */}
                 <small className={styleForm.errorMsg}>
                   {formErrors.userName}
                 </small>
               </label>
               <input
                 type="text"
-                placeholder="Name"
+                placeholder="名前"
                 name="userName"
                 onChange={(e) => handleChange(e)}
               />
             </div>
             <div className={styleForm.formField}>
               <label>
-                メールアドレス
+                {/* メールアドレス */}
                 <small className={styleForm.errorMsg}>
                   {formErrors.email}
                 </small>
               </label>
               <input
                 type="email"
-                placeholder="Email"
+                placeholder="メールアドレス"
                 name="email"
                 onChange={(e) => handleChange(e)}
               />
             </div>
             <div className={styleForm.formField}>
               <label>
-                郵便番号
+                {/* 郵便番号 */}
                 <small className={styleForm.errorMsg}>
                   {formErrors.zipcode}
                 </small>
               </label>
               <input
                 type="text"
-                placeholder="Zipcode"
+                placeholder="郵便番号"
                 name="zipcode"
                 onChange={(e) => handleChange(e)}
               />
             </div>
             <div className={styleForm.formField}>
               <label>
-                住所
+                {/* 住所 */}
                 <small className={styleForm.errorMsg}>
                   {formErrors.address}
                 </small>
               </label>
               <input
                 type="text"
-                placeholder="Address"
+                placeholder="住所"
                 name="address"
                 onChange={(e) => handleChange(e)}
               />
             </div>
             <div className={styleForm.formField}>
               <label>
-                電話番号
+                {/* 電話番号 */}
                 <small className={styleForm.errorMsg}>
                   {formErrors.tel}
                 </small>
               </label>
               <input
                 type="text"
-                placeholder="Tel"
+                placeholder="電話番号"
                 name="tel"
                 onChange={(e) => handleChange(e)}
               />
             </div>
             <div className={styleForm.formField}>
               <label>
-                パスワード
+                {/* パスワード */}
                 <small className={styleForm.errorMsg}>
                   {formErrors.password}
                 </small>
               </label>
               <input
                 type="password"
-                placeholder="Password"
+                placeholder="パスワード"
                 name="password"
                 onChange={(e) => handleChange(e)}
               />
             </div>
             <div className={styleForm.formField}>
               <label>
-                確認用パスワード
+                {/* 確認用パスワード */}
                 <small className={styleForm.errorMsg}>
                   {formErrors.Cpassword}
                 </small>
               </label>
               <input
                 type="password"
-                placeholder="Confirmation Password"
+                placeholder="確認用パスワード"
                 name="Cpassword"
                 onChange={(e) => handleChange(e)}
               />

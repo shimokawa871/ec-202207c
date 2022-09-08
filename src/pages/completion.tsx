@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Layout from 'components/layout';
 import Header from 'components/Header';
+import HeaderLoginUserName from 'components/HeaderLoginUserName';
 import HeaderCart from 'components/HeaderCart';
 import HeaderOrder from 'components/HeaderOrder';
 import HeaderLogin from 'components/HeaderLogin';
@@ -15,6 +16,7 @@ export default function Completion() {
         <title>注文完了</title>
       </Head>
       <Header
+        menu5={<HeaderLoginUserName />}
         menu1={<HeaderCart />}
         menu2={<HeaderOrder />}
         menu3={<HeaderLogin />}
