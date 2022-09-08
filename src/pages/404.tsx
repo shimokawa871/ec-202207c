@@ -30,8 +30,8 @@ export default function ErrorPage(){
       />
   {/* <p>{router.asPath}</p> */}
   <div className={styles.comContents}>
-  <p>申し訳ございませんが、
-  ご指定の商品は現在お取り扱いをしておりません。</p>
+  <p>お探しのページが見つかりませんでした。</p>
+  <p>URLが間違っているか、ページが存在しません。</p>
 
   <p>5秒後に<span className={styles.msg}>商品一覧</span>へ戻ります。</p>
 
