@@ -11,11 +11,13 @@
   display: flex;
   gap: 3%;
   padding-left: 0;
-  min-width: 400px;
+  min-width: 600px;
 }
 .menuList {
   white-space: nowrap;
   color: #ff6347;
+  display: flex;
+  justify-content: flex-end;
 }
 .menuList:hover {
   color: #228b22;
