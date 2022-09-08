@@ -25,13 +25,18 @@ export default function Cart() {
   const [hone, setHone] = useState(true);
   const [del, setDel] = useState(true);
   const [moji, setMoji] = useState(true);
-
+  const returnTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    })
+  }
   let oder = () => {
     setTestFlag(!testFlag);
     setHone(!hone);
     setDel(!del);
     setMoji(!moji);
-    // Scroll();
+    returnTop();
   };
 
   const { mutate } = useSWRConfig();
@@ -48,7 +53,7 @@ export default function Cart() {
 //   const onClickDeleteT = (orderToppingList: string) => {
 //     {data.map((aaaaa: any) => 
 //       {aaaaa.map((orderToppingList: any) => {
-//     fetch(`http://localhost:8000/orderItems/${orderToppingList}`, {
+//     fetch(`http://localhost:8000/orderItems/${[orderToppingList}`, {
 //       method: 'delete',
 //     });
 //     mutate('http://localhost:8000/orderItems');
