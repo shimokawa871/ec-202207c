@@ -1,5 +1,5 @@
 import useSWR from 'swr';
-import styleOrder from '../styles/form.module.css';
+import styleOrder from '../styles/orderForm.module.css';
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Head from 'next/head';
@@ -147,189 +147,187 @@ const orderConfirmation = () => {
       </Head>
 
       <div className={styleOrder.orderFormContainer}>
-      <form>
-        <h1 className={styleOrder.head}>お届け先情報</h1>
-        <hr />
-        <button
-      className={styleOrder.coBtn}
-      type="button"
-      onClick={() => onCLickData()}>
-        ご登録住所にお届けする場合はこちら
-      </button>
-      <p className={styleOrder.pTitle}>新しいお届け先にお届けする場合は下記ご入力下さい。</p>
-        <div className={styleOrder.formField}>
-          <label className={styleOrder.formLabel}>
-            <span className={styleOrder.formRequire}>必須</span>
-            氏名
-            <small className={styleOrder.errorMsg}></small>
-          </label>
-          <input
-            //className={styleOrder.formInput}
-            name="userName"
-            type="text"
-            placeholder="Name"
-            value={userName}
-            onChange={onChangeName}
-          />
-        </div>
-        <div className={styleOrder.formField}>
-          <label className={styleOrder.formLabel}>
-            <span className={styleOrder.formRequire}>必須</span>
-            メールアドレス
-            <small className={styleOrder.errorMsg}></small>
-          </label>
-          <input
-            //className={styleOrder.formInput}
-            name="email"
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={onChangeEmail}
-          />
-        </div>
-        <div className={styleOrder.formField}>
-          <label className={styleOrder.formLabel}>
-            <span className={styleOrder.formRequire}>必須</span>
-            郵便番号
-            <small className={styleOrder.errorMsg}></small>
-            <button className={styleOrder.addressBtn}>住所検索</button>
-          </label>
-          <input
-            //className={styleOrder.formInput}
-            name="zipCode"
-            type="text"
-            placeholder="ZipCode"
-            value={zipCode}
-            onChange={onChangeZipCode}
-          />
-        </div>
-        <div className={styleOrder.formField}>
-          <label className={styleOrder.formLabel}>
-            <span className={styleOrder.formRequire}>必須</span>
-            住所
-            <small className={styleOrder.errorMsg}></small>
-          </label>
-          <input
-            //className={styleOrder.formInput}
-            name="address"
-            type="text"
-            placeholder="Address"
-            value={address}
-            onChange={onChangeAddress}
-          />
-        </div>
-        <div className={styleOrder.formField}>
-          <label className={styleOrder.formLabel}>
-            <span className={styleOrder.formRequire}>必須</span>
-            電話番号
-            <small className={styleOrder.errorMsg}></small>
-          </label>
-          <input
-            //className={styleOrder.formInput}
-            name="tel"
-            type="text"
-            placeholder="Tel"
-            value={tel}
-            onChange={onChangeTel}
-          />
-        </div>
-        <div className={styleOrder.formField}>
-          <label className={styleOrder.formLabel}>
-            <span className={styleOrder.formRequire}>必須</span>
-            配達日時
-            <small className={styleOrder.errorMsg}></small>
-          </label>
-          <div>
-            <p className={styleOrder.information}>
-              ご希望の配達日時を選択してください
-            </p>
-            <input
-              className={styleOrder.dateForm}
-              type="date"
-              value={deliveryDate}
-              onChange={onChangeDate}
-            />
-            <input
-              className={styleOrder.timeForm}
-              type="time"
-              list="data-list"
-              min="09:00"
-              max="23:00"
-              step="1800"
-              name="time"
-              value={deliveryTime}
-              onChange={onChangeTime}
-            />
-            <span></span>
-            <datalist id="data-list">
-              <option value="09:00"></option>
-              <option value="09:30"></option>
-              <option value="10:00"></option>
-              <option value="10:30"></option>
-              <option value="11:00"></option>
-              <option value="11:30"></option>
-              <option value="12:00"></option>
-              <option value="12:30"></option>
-              <option value="13:00"></option>
-              <option value="13:30"></option>
-              <option value="14:00"></option>
-              <option value="14:30"></option>
-              <option value="15:00"></option>
-              <option value="15:30"></option>
-              <option value="16:00"></option>
-              <option value="16:30"></option>
-              <option value="17:00"></option>
-              <option value="17:30"></option>
-              <option value="18:00"></option>
-              <option value="18:30"></option>
-              <option value="19:00"></option>
-              <option value="19:30"></option>
-              <option value="20:00"></option>
-              <option value="20:30"></option>
-              <option value="21:00"></option>
-              <option value="21:30"></option>
-              <option value="22:00"></option>
-              <option value="22:30"></option>
-              <option value="23:00"></option>
-            </datalist>
-          </div>
-        </div>
-        <div className={styleOrder.formField}>
-          <label className={styleOrder.formLabel}>
-            <span className={styleOrder.formRequire}>必須</span>
-            お支払い方法
-            <small className={styleOrder.errorMsg}></small>
-          </label>
-          <div className={styleOrder.radioLabel}>
-            <label className={styleOrder.labelRadio}>
-              <input
-                type="radio"
-                name="payment"
-                value="1"
-                onChange={onChangePay}
-              />
-              代金引換
+        <form>
+          <h1 className={styleOrder.head}>お届け先情報</h1>
+          <hr className={styleOrder.hr} />
+          <button
+            className={styleOrder.coBtn}
+            type="button"
+            onClick={() => onCLickData()}
+          >
+            ご登録住所にお届けする場合はこちら
+          </button>
+          <p className={styleOrder.pTitle}>
+            新しいお届け先にお届けする場合は下記ご入力下さい。
+          </p>
+          <div className={styleOrder.orderFormField}>
+            <label className={styleOrder.formLabel}>
+              氏名
+              <small className={styleOrder.errorMsg}></small>
             </label>
-            <label className={styleOrder.labelRadio}>
-              <input
-                type="radio"
-                name="payment"
-                value="2"
-                onChange={onChangePay}
-              />
-              クレジットカード
-            </label>
+            <input
+              className={styleOrder.formInput}
+              name="userName"
+              type="text"
+              placeholder="Name"
+              value={userName}
+              onChange={onChangeName}
+            />
           </div>
-        </div>
-        <Link href="/completion">
-          <input
-            type="submit"
-            className={styleOrder.orderBtn}
-            value="送信する"
-            onClick={() => onClickOrder()}
-          />
-        </Link>
-      </form>
+          <div className={styleOrder.orderFormField}>
+            <label className={styleOrder.formLabel}>
+              メールアドレス
+              <small className={styleOrder.errorMsg}></small>
+            </label>
+            <input
+              className={styleOrder.formInput}
+              name="email"
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={onChangeEmail}
+            />
+          </div>
+          <div className={styleOrder.orderFormField}>
+            <label className={styleOrder.formLabel}>
+              郵便番号
+              <small className={styleOrder.errorMsg}></small>
+              <button className={styleOrder.addressBtn}>
+                住所検索
+              </button>
+            </label>
+            <input
+              className={styleOrder.formInput}
+              name="zipCode"
+              type="text"
+              placeholder="ZipCode"
+              value={zipCode}
+              onChange={onChangeZipCode}
+            />
+          </div>
+          <div className={styleOrder.orderFormField}>
+            <label className={styleOrder.formLabel}>
+              住所
+              <small className={styleOrder.errorMsg}></small>
+            </label>
+            <input
+              className={styleOrder.formInput}
+              name="address"
+              type="text"
+              placeholder="Address"
+              value={address}
+              onChange={onChangeAddress}
+            />
+          </div>
+          <div className={styleOrder.orderFormField}>
+            <label className={styleOrder.formLabel}>
+              電話番号
+              <small className={styleOrder.errorMsg}></small>
+            </label>
+            <input
+              className={styleOrder.formInput}
+              name="tel"
+              type="text"
+              placeholder="Tel"
+              value={tel}
+              onChange={onChangeTel}
+            />
+          </div>
+          <div className={styleOrder.orderFormField}>
+            <label className={styleOrder.formLabel}>
+              配達日時
+              <small className={styleOrder.errorMsg}></small>
+            </label>
+            <div>
+              <p className={styleOrder.dateInformation}>
+                ご希望の配達日時を選択してください
+              </p>
+              <input
+                className={styleOrder.dateForm}
+                type="date"
+                value={deliveryDate}
+                onChange={onChangeDate}
+              />
+              <input
+                className={styleOrder.timeForm}
+                type="time"
+                list="data-list"
+                min="09:00"
+                max="23:00"
+                step="1800"
+                name="time"
+                value={deliveryTime}
+                onChange={onChangeTime}
+              />
+              <span></span>
+              <datalist id="data-list">
+                <option value="09:00"></option>
+                <option value="09:30"></option>
+                <option value="10:00"></option>
+                <option value="10:30"></option>
+                <option value="11:00"></option>
+                <option value="11:30"></option>
+                <option value="12:00"></option>
+                <option value="12:30"></option>
+                <option value="13:00"></option>
+                <option value="13:30"></option>
+                <option value="14:00"></option>
+                <option value="14:30"></option>
+                <option value="15:00"></option>
+                <option value="15:30"></option>
+                <option value="16:00"></option>
+                <option value="16:30"></option>
+                <option value="17:00"></option>
+                <option value="17:30"></option>
+                <option value="18:00"></option>
+                <option value="18:30"></option>
+                <option value="19:00"></option>
+                <option value="19:30"></option>
+                <option value="20:00"></option>
+                <option value="20:30"></option>
+                <option value="21:00"></option>
+                <option value="21:30"></option>
+                <option value="22:00"></option>
+                <option value="22:30"></option>
+                <option value="23:00"></option>
+              </datalist>
+            </div>
+          </div>
+          <div className={styleOrder.orderFormField}>
+            <label className={styleOrder.formLabel}>
+              お支払い方法
+              <small className={styleOrder.errorMsg}></small>
+            </label>
+            <div className={styleOrder.radioLabel}>
+              <label className={styleOrder.labelRadio}>
+                <input
+                  type="radio"
+                  name="payment"
+                  value="1"
+                  onChange={onChangePay}
+                />
+                代金引換
+              </label>
+              <label className={styleOrder.labelRadio}>
+                <input
+                  type="radio"
+                  name="payment"
+                  value="2"
+                  onChange={onChangePay}
+                />
+                クレジットカード
+              </label>
+            </div>
+          </div>
+          <Link href="/completion">
+            <input
+              type="submit"
+              className={styleOrder.orderBtn}
+              value="この内容で注文する"
+              onClick={() => onClickOrder()}
+            />
+          </Link>
+        </form>
       </div>
     </>
   );
