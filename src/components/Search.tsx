@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './search.module.css';
 import itemListStyles from './itemList.module.css';
 import useSWR from 'swr';
@@ -12,12 +12,14 @@ export const fetcher = (resource: any, init: any) =>
 export default function Search() {
   const { data, error } = useSWR('/api/items', fetcher);
 
+  //formの入力される値の書き換え用
   const [searchWord, setSearchWord] = useState('');
   //form内の値が変更された時に発火するメソッド(stateの値をformに記述された値に変換)
   const searchOnInput = (event: any) => {
     setSearchWord(event.target.value);
   };
 
+  //formで検索された値を保存する用
   const [searchData, setSearchData] = useState([]);
 
   if (error) return <div>failed to load</div>;
@@ -27,7 +29,7 @@ export default function Search() {
   const onSearch = () => {
     setSearchData(
       data.filter((event: any) => {
-        return event.name.indexOf(searchWord) >= 0;
+        return event.name.indexOf(searchWord) >= 0; //data配列の中からsearchWordを検索してフィルターにかける
       })
     );
   };
@@ -36,7 +38,7 @@ export default function Search() {
   const onClickClear = () => {
     setSearchWord('');
     setSearchData([]);
-  }
+  };
 
   return (
     <>
@@ -47,11 +49,12 @@ export default function Search() {
       >
         <p className={styles.search}>商品を検索する</p>
         <div className={styles.itemTitle}>
-          商品名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          {/* 商品名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */}
           <input
             type="text"
             id="name"
             name="name"
+            placeholder="キーワードを入力"
             value={searchWord}
             onChange={searchOnInput}
             className={styles.searchForm}
@@ -68,9 +71,10 @@ export default function Search() {
         </button>
         &nbsp;&nbsp;
         <button
-        type="reset"
-        onClick={()=>onClickClear()}
-        className={styles.clearButton}>
+          type="reset"
+          onClick={() => onClickClear()}
+          className={styles.clearButton}
+        >
           クリア
         </button>
       </form>
