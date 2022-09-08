@@ -9,6 +9,7 @@ import HeaderOrder from 'components/HeaderOrder';
 import HeaderLogin from 'components/HeaderLogin';
 import HeaderLogout from 'components/HeaderLogout';
 import styles from '../../styles/detail.module.css';
+import HeaderLoginUserName from '../../components/HeaderLoginUserName';
 
 export default function Detail({ item }: any) {
   // getStaticPropsでとってきたdb.json（items）のデータ
@@ -48,6 +49,7 @@ export default function Detail({ item }: any) {
         menu2={<HeaderOrder />}
         menu3={<HeaderLogin />}
         menu4={<HeaderLogout />}
+        menu5={<HeaderLoginUserName />}
       />
 
       <div className={styles.container}>
