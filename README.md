@@ -1,15 +1,15 @@
 ![一覧画面](/public/Top.png) 
 ## 使用言語やツール
-言語
+### 言語
 - JavaScript
 - TypeScript
 - HTML
 - CSS
-ライブラリ
+### ライブラリ
 - React
-フレームワーク
+### フレームワーク
 - Next.js
-テスト
+### テスト
 - ?
 - ?
 - 
