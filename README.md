@@ -1,6 +1,6 @@
 ![一覧画面](/public/Top.png) 
 ## 使用言語やツール
-__言語__
+___言語___
 - JavaScript
 - TypeScript
 - HTML
