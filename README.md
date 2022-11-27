@@ -1,21 +1,16 @@
-![一覧画面](/public/Top.png) 
-## 使用言語やツール
-### 言語
-- JavaScript
-- TypeScript
-- HTML
-- CSS
-### ライブラリ
-- React
-### フレームワーク
-- Next.js
-### テスト
-- ?
-- ?
-## アーキテクチャー図
-## どんなサイトか
+## 開発概要
+### ECサイトについて
 
-## 開発ルール
-- コメントを残す
-- 
+JavaScript(TypeScript)+ Next.jsで作成した
 
+架空のピザ屋のECサイトです。
+- TOP画面 (/items/index.tsx)
+![一覧画面](/public/TOP.png) 
+
+- 商品詳細画面 (/items/[id])
+![商品詳細画面](/public/ITEM.png)
+
+- ショッピングカート画面 (orderConfirmation.tsx)
+![カート](/public/CART.png)
+### ユースケース図
+![ユースケース図](/public/ユースケース図.png)
